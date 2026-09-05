@@ -1,0 +1,3 @@
+# Podgląd do review — nie indeksować. Wersja produkcyjna: www.mytruecosmetology.com
+User-agent: *
+Disallow: /

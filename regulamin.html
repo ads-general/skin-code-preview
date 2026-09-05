@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="Regulamin sprzedaży kursu online Skin Code Olgi Pavlenko.">
+<link rel="canonical" href="https://www.mytruecosmetology.com/regulamin">
+<link rel="stylesheet" href="design-system/styles.css">
+<script src="design-system/_ds_bundle.js"></script>
+<style>body { margin: 0; }</style>
+</helmet>
+<nav class="nav" style="max-width:900px;margin:0 auto;padding:20px clamp(20px,5vw,72px)">
+  <a class="nav-brand" href="index.html" style="text-decoration:none;color:inherit">Skin Code</a>
+  <a href="index.html">Strona główna</a>
+</nav>
+<main style="max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,72px) 96px">
+  <h1 style="font-family:var(--font-heading);font-weight:700;text-transform:uppercase;font-size:clamp(30px,4vw,44px);margin:0 0 8px">Regulamin</h1>
+  <p style="font-size:14px;color:color-mix(in srgb, var(--color-text) 65%, transparent);margin:0 0 40px">Ostatnia aktualizacja: [DATA]</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">1. Definicje i sprzedawca</h2>
+  <p style="font-size:15px;line-height:1.65">Sprzedawcą kursu online „Skin Code” jest <strong>DBMP</strong> [pełne dane rejestrowe w wersji produkcyjnej], kontakt: <span class="email-protect" data-u="olga" data-d="pawlenko.com">olga [at] pawlenko.com</span>. Kurs dostępny jest pod adresem www.mytruecosmetology.com.</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">2. Przedmiot umowy</h2>
+  <p style="font-size:15px;line-height:1.65">Przedmiotem umowy jest dostęp do kursu online „Skin Code” w wybranym pakiecie (Basic — 699 zł lub Mentoring — 1799 zł; w okresie przedsprzedaży odpowiednio 399 zł i 1399 zł), obejmującego 27 lekcji wideo, konspekty PDF, materiały dodatkowe oraz — w pakiecie Mentoring — dwa spotkania online po godzinie, poświęcone analizie potrzeb skóry i doborowi pielęgnacji, oraz feedback do zadań domowych.</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">3. Zawarcie umowy i płatność</h2>
+  <p style="font-size:15px;line-height:1.65">Zakup odbywa się poprzez platformę płatności [PLACEHOLDER — nazwa operatora / link do płatności]. Umowa zostaje zawarta w momencie potwierdzenia płatności.</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">4. Dostęp do kursu</h2>
+  <p style="font-size:15px;line-height:1.65">Dostęp do kursu przyznawany jest automatycznie na adres e-mail podany podczas rejestracji, niezwłocznie po zaksięgowaniu płatności. Kolejne lekcje udostępniane są sukcesywnie, w miarę postępów Kupującego; dostęp do kursu jest nieograniczony czasowo.</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">5. Prawo odstąpienia od umowy</h2>
+  <p style="font-size:15px;line-height:1.65">Zgodnie z ustawą o prawach konsumenta, w przypadku treści cyfrowych udostępnianych niezwłocznie po zapłacie, prawo odstąpienia może nie mieć zastosowania po wyrażeniu przez kupującego zgody na rozpoczęcie realizacji przed upływem 14 dni — [PLACEHOLDER: doprecyzować zgodnie z faktycznym modelem dostaw treści].</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">6. Reklamacje</h2>
+  <p style="font-size:15px;line-height:1.65">Reklamacje można składać na adres <span class="email-protect" data-u="olga" data-d="pawlenko.com">olga [at] pawlenko.com</span>. Reklamacja zostanie rozpatrzona w terminie 14 dni.</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">7. Zastrzeżenie zdrowotne</h2>
+  <p style="font-size:15px;line-height:1.65">Kurs ma charakter edukacyjny i nie zastępuje konsultacji lekarskiej, dermatologicznej ani kosmetologicznej. Decyzje dotyczące pielęgnacji w przypadku problemów skórnych warto konsultować ze specjalistą.</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">8. Postanowienia końcowe</h2>
+  <p style="font-size:15px;line-height:1.65">W sprawach nieuregulowanych niniejszym regulaminem zastosowanie mają przepisy prawa polskiego.</p>
+</main>
+<footer style="border-top:1px solid var(--color-divider)">
+  <div style="max-width:900px;margin:0 auto;padding:24px clamp(20px,5vw,72px);font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent)">© 2026 My True Cosmetology · DBMP</div>
+</footer>
+
+</x-dc>
+<script>
+// Adresu nie ma w źródle strony — składamy go dopiero w przeglądarce, żeby nie
+// zbierały go scrapery czytające HTML regexem. Bez JS zostaje czytelny zapis
+// „olga [at] pawlenko.com", więc kontakt jest podany także wtedy (wymóg art. 5
+// ustawy o świadczeniu usług drogą elektroniczną).
+//
+// Obserwator, nie jednorazowy przebieg: runtime DC renderuje treść <x-dc>
+// asynchronicznie, więc pojedyncze wywołanie trafiłoby w pustą stronę,
+// a wstawione linki i tak zostałyby nadpisane przy renderze.
+(function () {
+  function rozwin(root) {
+    (root.querySelectorAll ? root.querySelectorAll('.email-protect') : []).forEach(function (el) {
+      var addr = el.dataset.u + '@' + el.dataset.d;
+      var a = document.createElement('a');
+      a.href = 'mailto:' + addr;
+      a.textContent = addr;
+      el.replaceWith(a);
+    });
+  }
+  rozwin(document);
+  new MutationObserver(function (muts) {
+    muts.forEach(function (m) {
+      m.addedNodes.forEach(function (n) { if (n.nodeType === 1) rozwin(n); });
+    });
+  }).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+
+</body>
+</html>

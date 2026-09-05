@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="Kurs online Skin Code Olgi Pavlenko: 27 lekcji o składnikach kosmetycznych, czytaniu składów INCI i świadomej pielęgnacji skóry. Przedsprzedaż od 399 zł.">
+<link rel="canonical" href="https://www.mytruecosmetology.com/">
+<link rel="alternate" hreflang="pl" href="https://www.mytruecosmetology.com/">
+<link rel="alternate" hreflang="x-default" href="https://www.mytruecosmetology.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:title" content="Skin Code — kurs online o pielęgnacji skóry | Olga Pavlenko">
+<meta property="og:description" content="27 lekcji o składnikach kosmetycznych i świadomej pielęgnacji skóry. Nauczysz się czytać składy INCI i budować pielęgnację dopasowaną do siebie.">
+<meta property="og:url" content="https://www.mytruecosmetology.com/">
+<meta property="og:image" content="https://www.mytruecosmetology.com/assets/img/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="design-system/styles.css">
+<script src="design-system/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+html { scroll-behavior: smooth; }
+body { margin: 0; text-wrap: pretty; overflow-x: hidden; }
+@keyframes revealUp { from { opacity: 0; transform: translateY(38px); } to { opacity: 1; transform: none; } }
+@keyframes revealUpRot { from { opacity: 0; transform: translateY(38px) rotate(var(--rot, 0deg)); } to { opacity: 1; transform: rotate(var(--rot, 0deg)); } }
+@keyframes revealFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes revealLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: none; } }
+@keyframes revealRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: none; } }
+@keyframes wipeIn { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes driftY { from { transform: translateY(5%) scale(1.06); } to { transform: translateY(-5%) scale(1.06); } }
+@keyframes driftYSlow { from { transform: translateY(3%) scale(1.04); } to { transform: translateY(-3%) scale(1.04); } }
+@keyframes growX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes ruleGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes scribble { from { stroke-dashoffset: 320; } to { stroke-dashoffset: 0; } }
+@keyframes stickyCtaIn { from { opacity: 0; transform: translateY(100%); } to { opacity: 1; transform: none; } }
+/* The "Dla kogo" photo column sticks alongside the list on a two-column grid.
+   Once the grid collapses to one column the sticky element stays pinned while
+   the list scrolls up under it — photos land on top of the text. Sticky only
+   applies while there are actually two columns to stick beside. */
+.sticky-media { position: static; }
+@media (min-width: 760px) {
+  .sticky-media { position: sticky; top: 32px; }
+}
+/* The program accordion's meta strip is four cells in a row; below ~700px it
+   wraps into a ragged two-row grid with mismatched dividers, and its content
+   ("27 lekcji, 5 modułów") already reads as the H2 directly above it. */
+@media (max-width: 700px) { .program-meta { display: none !important; } }
+/* Module titles are long Polish phrases; at 19px on a 375px screen they run to
+   three lines and squeeze the lesson range. Step them down and let the range
+   sit quietly beside them. */
+@media (max-width: 700px) {
+  .program-accordion > details > summary { font-size: 16px !important; gap: 10px !important; padding: 16px 18px !important; }
+  .accordion > details > summary { padding: 16px 18px !important; }
+}
+.sticky-mobile-cta { display: none; }
+/* Mobile nav: a sticky header that wraps to three rows eats ~40% of a phone
+   viewport. Keep brand + CTA on one row; the section links live in the
+   footer and every section is one scroll away anyway. */
+@media (max-width: 720px) {
+  .nav > a:not(.btn):not(.nav-login) { display: none; }
+  .nav { justify-content: space-between; gap: 12px; }
+  .nav-login { margin-right: 0 !important; }
+  .cta-price { display: none; }
+}
+@media (max-width: 640px) {
+  .sticky-mobile-cta {
+    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
+    align-items: center; justify-content: space-between; gap: 12px;
+    padding: 12px clamp(16px,4vw,24px); background: var(--color-bg);
+    border-top: 1px solid var(--color-divider); box-shadow: 0 -8px 24px -12px color-mix(in srgb, var(--color-text) 20%, transparent);
+    opacity: 0; transform: translateY(100%);
+    animation: stickyCtaIn linear both; animation-timeline: scroll(root); animation-range: 600px 800px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+  /* Pasek jest position:fixed, więc bez tego przykrywa koniec strony — ostatnią
+     linią stopki, tę z danymi sprzedawcy. Rezerwujemy pod niego wysokość. */
+  .footer-inner { padding-bottom: calc(32px + 92px + env(safe-area-inset-bottom, 0px)); }
+  /* Przycisk trzyma jedną linię; tekst po lewej oddaje mu miejsce zamiast się z nim bić. */
+  .sticky-mobile-cta > div { flex: 1; min-width: 0; }
+  .sticky-mobile-cta .btn { flex: none; white-space: nowrap; }
+}
+details.acc > summary { list-style: none; cursor: pointer; }
+details.acc > summary::-webkit-details-marker { display: none; }
+details.acc > .acc-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 300ms var(--ease-spring), opacity 250ms ease;
+}
+details.acc[open] > .acc-panel { grid-template-rows: 1fr; opacity: 1; }
+details.acc > .acc-panel > .acc-inner { overflow: hidden; min-height: 0; }
+details.acc[open] .chevron { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; }
+  details.acc > .acc-panel, details.acc .chevron { transition: none !important; }
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Course","name":"Skin Code","description":"Kurs online o składnikach kosmetycznych i świadomej pielęgnacji skóry — 27 lekcji wideo, konspekty PDF i zadania domowe.","provider":{"@type":"Person","name":"Olga Pavlenko","sameAs":["https://www.instagram.com/my.true.cosmetology/","https://www.tiktok.com/@my.true.cosmetology"]},"inLanguage":"pl","hasCourseInstance":[{"@type":"CourseInstance","courseMode":"online","name":"Skin Code — Basic","offers":{"@type":"Offer","price":"399","priceCurrency":"PLN","priceValidUntil":"2026-09-24","url":"https://www.mytruecosmetology.com/#cennik"}},{"@type":"CourseInstance","courseMode":"online","name":"Skin Code — Mentoring","offers":{"@type":"Offer","price":"1399","priceCurrency":"PLN","priceValidUntil":"2026-09-24","url":"https://www.mytruecosmetology.com/#cennik"}}]},
+{"@type":"Person","name":"Olga Pavlenko","jobTitle":"Kosmetolog","alumniOf":["Uniwersytet Medyczny im. Piastów Śląskich we Wrocławiu","Akademia Wychowania Fizycznego we Wrocławiu"],"sameAs":["https://www.instagram.com/my.true.cosmetology/","https://www.tiktok.com/@my.true.cosmetology"]},
+{"@type":"WebSite","name":"My True Cosmetology","url":"https://www.mytruecosmetology.com/","inLanguage":"pl"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Czy potrzebuję wcześniejszej wiedzy, żeby zacząć kurs Skin Code?","acceptedAnswer":{"@type":"Answer","text":"Nie. Kurs prowadzi Cię od podstaw: zaczynamy od określenia rodzaju skóry i budowy prostej pielęgnacji, a kolejne lekcje krok po kroku wprowadzają składniki aktywne."}},
+{"@type":"Question","name":"Jak długo mam dostęp do materiałów kursu?","acceptedAnswer":{"@type":"Answer","text":"Dostęp do kursu Skin Code jest nieograniczony czasowo — wracasz do lekcji i konspektów w dowolnym momencie, we własnym tempie."}},
+{"@type":"Question","name":"Czym różnią się pakiety Basic i Mentoring?","acceptedAnswer":{"@type":"Answer","text":"Basic to 27 lekcji wideo z prezentacjami, konspekty PDF, dodatkowe materiały i baza rekomendowanych preparatów — w przedsprzedaży 399 zł (cena regularna 699 zł). Mentoring zawiera to samo oraz dwa godzinne spotkania online do analizy potrzeb Twojej skóry i doboru pielęgnacji oraz feedback do zadań domowych — w przedsprzedaży 1399 zł (cena regularna 1799 zł)."}},
+{"@type":"Question","name":"Na czym polega przedsprzedaż 23–24 września?","acceptedAnswer":{"@type":"Answer","text":"Przedsprzedaż to jedyny moment, kiedy można dołączyć do kursu z rabatem: pakiet Basic za 399 zł zamiast 699 zł, pakiet Mentoring za 1399 zł zamiast 1799 zł. Dostęp do platformy kursowej jest nadawany na podany adres e-mail po zaksięgowaniu płatności."}},
+{"@type":"Question","name":"Jak wygląda mentoring z Olgą?","acceptedAnswer":{"@type":"Answer","text":"W pakiecie Mentoring Olga kontaktuje się mailowo na adres podany podczas rejestracji, umawia dwa godzinne spotkania online dotyczące potrzeb Twojej skóry i doboru pielęgnacji oraz daje feedback do Twoich zadań domowych."}},
+{"@type":"Question","name":"Czy kurs Skin Code zastępuje wizytę u dermatologa lub kosmetologa?","acceptedAnswer":{"@type":"Answer","text":"Nie. Skin Code uczy świadomego doboru pielęgnacji i czytania składów, ale nie zastępuje diagnozy ani konsultacji lekarskiej — przy poważnych problemach skórnych warto skonsultować się ze specjalistą."}},
+{"@type":"Question","name":"W jakiej formie są lekcje kursu?","acceptedAnswer":{"@type":"Answer","text":"Każda lekcja to wideo-prezentacja plus konspekt w PDF; do wielu tematów dołączone są dodatkowe materiały, a prawie każda lekcja zawiera zadanie domowe."}},
+{"@type":"Question","name":"Czym kurs Skin Code różni się od darmowych rolek na Instagramie i TikToku?","acceptedAnswer":{"@type":"Answer","text":"Rolka odpowiada na jedno pytanie i nie wie nic o Twojej skórze. Kurs to 27 lekcji w kolejności: najpierw rozpoznanie rodzaju skóry i budowa bazy pielęgnacyjnej, potem składniki aktywne po kolei, a na końcu ułożenie własnego schematu na rano i wieczór. Do tego konspekty PDF, zasady bezpiecznego łączenia składników i baza rekomendowanych preparatów."}},
+{"@type":"Question","name":"Czy mogę zwrócić kurs Skin Code?","acceptedAnswer":{"@type":"Answer","text":"Nie. Dostęp do materiałów jest przyznawany natychmiast po zakupie, a wyrażając na to zgodę kupujący rezygnuje z prawa odstąpienia od umowy w ciągu 14 dni, zgodnie z przepisami o sprzedaży treści cyfrowych i regulaminem. Dlatego jedna pełna lekcja kursu jest dostępna bezpłatnie przed zakupem."}},
+{"@type":"Question","name":"W jakim tempie otrzymuję kolejne lekcje kursu?","acceptedAnswer":{"@type":"Answer","text":"Kolejne lekcje otwierają się w miarę Twoich postępów — nie dostajesz 27 nagrań naraz, tylko następny krok wtedy, gdy poprzedni masz za sobą. Tempo ustalasz sama, a dostęp jest bezterminowy."}}
+]}
+]}
+</script>
+</helmet>
+
+<sc-if value="{{ presaleActive }}" hint-placeholder-val="{{ true }}">
+<aside class="announce" style="background:var(--color-bg-dark);color:var(--color-bg);font-size:13px;text-align:center;padding:10px 16px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;align-items:center;font-weight:500">
+  <sc-if value="{{ presaleClosed }}" hint-placeholder-val="{{ true }}">
+  <span><strong style="font-family:var(--font-heading);letter-spacing:0.02em">{{ presaleLabel }}</strong> — pakiety taniej nawet o {{ savingsMentoring }}.</span>
+  <a href="#lista" style="color:var(--color-bg);text-decoration:underline;text-underline-offset:3px">Odbierz darmową lekcję i powiadomienie →</a>
+  </sc-if>
+  <sc-if value="{{ presaleOpen }}" hint-placeholder-val="{{ false }}">
+  <span><strong style="font-family:var(--font-heading);letter-spacing:0.02em">{{ presaleLabel }}</strong> — pakiety taniej nawet o {{ savingsMentoring }}.</span>
+  <a href="#cennik" style="color:var(--color-bg);text-decoration:underline;text-underline-offset:3px">Zablokuj niższą cenę →</a>
+  </sc-if>
+</aside>
+</sc-if>
+
+<div class="motion-keep" style="position:fixed;top:0;left:0;right:0;height:3px;z-index:50;transform-origin:0 50%;background:var(--color-accent);animation:growX linear both;animation-timeline:scroll(root)"></div>
+
+<div class="nav-bar" style="animation:revealFade .8s ease both">
+  <nav class="nav" style="max-width:1280px;margin:0 auto;padding:20px clamp(20px,5vw,72px)">
+    <span class="nav-brand">Skin&nbsp;Code</span>
+    <a href="#program" style="margin-right:24px">Program</a>
+    <a href="#dla-kogo" style="margin-right:24px">Dla kogo</a>
+    <a href="#o-mnie" style="margin-right:24px">O mnie</a>
+    <a href="#cennik" style="margin-right:24px">Cennik</a>
+    <a href="#faq" style="margin-right:24px">FAQ</a>
+    <a class="btn btn-primary" href="{{ ctaHref }}" style="min-height:44px;padding:10px 18px">{{ ctaShort }}</a>
+  </nav>
+</div>
+
+<main>
+
+<section style="max-width:1280px;margin:0 auto;padding:clamp(16px,4vw,48px) clamp(20px,5vw,72px) clamp(56px,8vw,104px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,5vw,64px);align-items:center">
+  <div style="position:relative">
+    <span class="tag tag-outline" style="display:inline-block;transform:rotate(-2deg);margin:0 0 20px;animation:revealUp .7s ease both">Kurs online · Olga Pavlenko</span>
+    <h1 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(58px,9.5vw,124px);line-height:0.92;letter-spacing:-0.02em;text-transform:uppercase;margin:0">
+      <span style="display:block;animation:revealUp .9s cubic-bezier(.2,.7,.2,1) both">Skin</span>
+      <span style="display:block;color:var(--color-accent-700);animation:revealUp .9s cubic-bezier(.2,.7,.2,1) .12s both">Code</span>
+    </h1>
+    <svg viewBox="0 0 300 18" style="display:block;width:min(300px,60%);height:auto;margin:10px 0 0;animation:revealFade .5s ease .6s both" aria-hidden="true"><path d="M4 12 C 60 4, 120 15, 170 9 S 270 6, 296 10" fill="none" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round" stroke-dasharray="320" style="animation:scribble 1.1s ease .7s both"/></svg>
+    <p style="font-size:clamp(18px,2vw,23px);line-height:1.45;max-width:42ch;margin:26px 0 0;animation:revealUp .9s ease .2s both">Naucz się czytać skórę i składy — i stwórz pielęgnację, która <em style="font-style:italic;color:var(--color-accent-700)">naprawdę działa</em>.</p>
+    <p style="font-size:16px;line-height:1.6;max-width:56ch;margin:18px 0 0;color:color-mix(in srgb, var(--color-text) 76%, transparent);animation:revealUp .9s ease .3s both">Na rynku pojawia się coraz więcej kosmetyków, składników aktywnych i sprzecznych informacji. Skin Code pomaga Ci uniknąć kosztownych błędów i przestać szukać odpowiedzi w social mediach.</p>
+
+    <sc-if value="{{ presaleActive }}" hint-placeholder-val="{{ true }}">
+    <div class="price-anchor" style="margin:28px 0 0;animation:revealUp .9s ease .36s both">
+      <span class="tag tag-accent">{{ presaleLabel }}</span>
+      <span class="price-anchor-row">
+        <span class="price-anchor-now">od {{ priceBasic }}</span>
+        <span class="price-anchor-was">{{ priceBasicRegular }}</span>
+      </span>
+      <span class="price-anchor-save">oszczędzasz&nbsp;{{ savingsBasic }}</span>
+      <span class="spin-badge" aria-hidden="true">
+        <svg class="spin-badge-ring" viewBox="0 0 100 100">
+          <defs><path id="sc-ring" fill="none" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"></path></defs>
+          <text><textPath href="#sc-ring" startOffset="0" textLength="238.76" lengthAdjust="spacing"></textPath></text>
+        </svg>
+        <span class="spin-badge-disc">{{ discountBasic }}</span>
+      </span>
+    </div>
+    </sc-if>
+
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:28px;align-items:center;animation:revealUp .9s ease .42s both">
+      <a class="btn btn-primary" href="{{ ctaHref }}" style="padding:16px 30px;font-size:15px;transition:transform .25s var(--ease-spring)" style-hover="transform:translateY(-2px)">{{ ctaMain }}</a>
+      <a class="btn btn-ghost" href="#program" style="padding:16px 20px;font-size:15px">Zobacz program →</a>
+    </div>
+  </div>
+  <div style="position:relative;min-height:420px">
+    <figure style="margin:0;position:relative;z-index:2;width:78%;background:var(--color-bg);padding:12px 12px 16px;--rot:-2.5deg;transform:rotate(-2.5deg);border:2px solid var(--color-text);box-shadow:var(--shadow-hard);animation:revealUpRot 1s cubic-bezier(.2,.7,.2,1) .15s both">
+      <div style="overflow:hidden;aspect-ratio:4/5">
+        <img src="assets/img/olga-hero.jpg" width="900" height="1200" alt="Olga Pavlenko — kosmetolog, autorka kursu Skin Code" style="width:100%;height:100%;object-fit:cover;animation:driftYSlow linear both;animation-timeline:view();animation-range:cover">
+      </div>
+      <figcaption style="padding:10px 4px 0;font-size:13px;font-style:italic;color:color-mix(in srgb, var(--color-text) 72%, transparent)">Olga Pavlenko · @my.true.cosmetology</figcaption>
+    </figure>
+    <figure style="margin:0;position:absolute;z-index:1;right:0;bottom:-8%;width:52%;background:var(--color-bg);padding:10px 10px 12px;--rot:3.5deg;transform:rotate(3.5deg);border:2px solid var(--color-text);box-shadow:var(--shadow-hard-sm);animation:revealUpRot 1s cubic-bezier(.2,.7,.2,1) .35s both">
+      <div style="overflow:hidden;aspect-ratio:1/1">
+        <img src="assets/img/olga-gabinet-2.jpg" width="900" height="1200" alt="Olga Pavlenko w gabinecie kosmetologicznym" style="width:100%;height:100%;object-fit:cover">
+      </div>
+    </figure>
+    <span class="tag tag-accent" style="position:absolute;z-index:3;top:-6px;right:8%;transform:rotate(4deg);animation:revealFade .6s ease .7s both">27 lekcji</span>
+    <span class="tag tag-neutral" style="position:absolute;z-index:3;left:-4px;bottom:14%;transform:rotate(-5deg);animation:revealFade .6s ease .85s both">dostęp bez limitu</span>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:clamp(48px,6vw,72px) clamp(20px,5vw,72px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border-top:1px solid var(--color-divider);border-left:1px solid var(--color-divider)">
+    <div style="background:var(--color-bg);padding:32px 24px;border-right:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);animation:revealUp .8s ease both;animation-timeline:view();animation-range:entry 0% cover 25%">
+      <div style="font-family:var(--font-heading);font-weight:700;font-size:clamp(48px,6vw,80px);line-height:1;letter-spacing:-0.015em">10</div>
+      <div style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-700);margin-top:12px">lat doświadczenia</div>
+    </div>
+    <div style="background:var(--color-bg);padding:32px 24px;border-right:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);animation:revealUp .8s ease both;animation-timeline:view();animation-range:entry 0% cover 25%">
+      <div style="font-family:var(--font-heading);font-weight:700;font-size:clamp(48px,6vw,80px);line-height:1;letter-spacing:-0.015em">12K+</div>
+      <div style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-700);margin-top:12px">realnych przypadków</div>
+    </div>
+    <div style="background:var(--color-bg);padding:32px 24px;border-right:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);animation:revealUp .8s ease both;animation-timeline:view();animation-range:entry 0% cover 25%">
+      <div style="font-family:var(--font-heading);font-weight:700;font-size:clamp(48px,6vw,80px);line-height:1;letter-spacing:-0.015em">27</div>
+      <div style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-700);margin-top:12px">lekcji wideo</div>
+    </div>
+    <div style="background:var(--color-bg);padding:32px 24px;border-right:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);animation:revealUp .8s ease .08s both;animation-timeline:view();animation-range:entry 0% cover 25%">
+      <div style="font-family:var(--font-heading);font-weight:700;font-size:clamp(48px,6vw,80px);line-height:1;letter-spacing:-0.015em">5</div>
+      <div style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-700);margin-top:12px">modułów</div>
+    </div>
+    <div style="background:var(--color-bg);padding:32px 24px;border-right:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);animation:revealUp .8s ease .16s both;animation-timeline:view();animation-range:entry 0% cover 25%">
+      <div style="font-family:var(--font-heading);font-weight:700;font-size:clamp(48px,6vw,80px);line-height:1;letter-spacing:-0.015em">55K+</div>
+      <div style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-700);margin-top:12px">społeczności</div>
+    </div>
+    <div style="background:var(--color-bg);padding:32px 24px;border-right:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);animation:revealUp .8s ease .24s both;animation-timeline:view();animation-range:entry 0% cover 25%">
+      <div style="font-family:var(--font-heading);font-weight:700;font-size:clamp(48px,6vw,80px);line-height:1;letter-spacing:-0.015em">6M+</div>
+      <div style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-700);margin-top:12px">wyświetleń rolek</div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1000px;margin:0 auto;padding:clamp(48px,7vw,80px) clamp(20px,5vw,72px)">
+  <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(24px,2.8vw,34px);text-transform:uppercase;letter-spacing:0.01em;text-align:center;margin:0 0 16px;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 26%">Skoro rolki są za darmo, <em style="font-style:italic;color:var(--color-accent-700)">po co kurs?</em></h2>
+  <p style="font-size:17px;line-height:1.65;max-width:60ch;margin:0 auto 36px;text-align:center;color:color-mix(in srgb, var(--color-text) 80%, transparent)">Bo rolka odpowiada na jedno pytanie, a Ty masz ich dwadzieścia — i żadna nie mówi jak to realnie zastosować w przypadku Twojego problemu skórnego.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px">
+    <div class="card" style="padding:24px;animation:revealUp .8s ease both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div class="card-kicker">Rolka</div>
+      <div class="card-title" style="font-size:17px">Wycinek z kontekstu</div>
+      <p class="card-body">Na przykład 30 sekund o polecanym kosmetyku. Bez odpowiedzi czy pasuje akurat do Twojej skóry i do reszty pielęgnacji, którą już stosujesz.</p>
+    </div>
+    <div class="card" style="padding:24px;animation:revealUp .8s ease .08s both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div class="card-kicker">Rolka</div>
+      <div class="card-title" style="font-size:17px">Brak konsekwencji</div>
+      <p class="card-body">Dowiadujesz się że retinol działa. Nadal nie wiesz od jakiego stężenia zacząć, od jakiej formy, jak często, z czym można lub nie można łączyć i jak ocenić czy jest postęp.</p>
+    </div>
+    <div class="card" style="padding:24px;background:var(--color-accent-100);animation:revealUp .8s ease .16s both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div class="card-kicker" style="color:var(--color-accent-800)">Kurs</div>
+      <div class="card-title" style="font-size:17px">Schemat i system, nie hype</div>
+      <p class="card-body">27 poukładanych lekcji i gotowe konspekty PDF do wydruku, które poprowadzą Cię od podstaw i zasad w pielęgnacji przez łatwe czytanie składów kosmetyków do doboru całego schematu pielęgnacyjnego pod swój problem skórny na rano i wieczór.</p>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(20px,5vw,72px);position:relative">
+  <span class="section-kicker">Rozdział 01 · Po tym kursie</span>
+  <hr class="section-rule">
+  <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3.4vw,44px);text-transform:uppercase;letter-spacing:0.01em;margin:0 0 44px;max-width:28ch;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 26%">Będziesz wiedzieć, <em style="font-style:italic;color:var(--color-accent-700)">co i dlaczego</em> nakładasz na skórę</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px">
+    <div class="card" style="padding:28px;transition:transform .3s var(--ease-spring), border-color .3s var(--ease-spring);animation:revealUp .8s ease both;animation-timeline:view();animation-range:entry 0% cover 28%" style-hover="transform:translateY(-6px) rotate(-0.5deg);border-color:var(--color-accent)">
+      <div class="card-kicker">01</div>
+      <div class="card-title" style="font-size:19px">Rozumiesz składniki</div>
+      <p class="card-body" style="font-size:14px">Wiesz jak działają najważniejsze składniki kosmetyczne i aktywne oraz w jakich formułach mają sens.</p>
+    </div>
+    <div class="card" style="padding:28px;transition:transform .3s var(--ease-spring), border-color .3s var(--ease-spring);animation:revealUp .8s ease .08s both;animation-timeline:view();animation-range:entry 0% cover 28%" style-hover="transform:translateY(-6px) rotate(0.5deg);border-color:var(--color-accent)">
+      <div class="card-kicker">02</div>
+      <div class="card-title" style="font-size:19px">Czytasz składy bez trudu</div>
+      <p class="card-body" style="font-size:14px">Oceniasz czy dany kosmetyk odpowiada potrzebom Twojej skóry, zamiast wierzyć etykiecie.</p>
+    </div>
+    <div class="card" style="padding:28px;transition:transform .3s var(--ease-spring), border-color .3s var(--ease-spring);animation:revealUp .8s ease .16s both;animation-timeline:view();animation-range:entry 0% cover 28%" style-hover="transform:translateY(-6px) rotate(-0.5deg);border-color:var(--color-accent)">
+      <div class="card-kicker">03</div>
+      <div class="card-title" style="font-size:19px">Budujesz prostą pielęgnację</div>
+      <p class="card-body" style="font-size:14px">Układasz skuteczny schemat krok po kroku, bez komplikowania codziennej rutyny.</p>
+    </div>
+    <div class="card" style="padding:28px;transition:transform .3s var(--ease-spring), border-color .3s var(--ease-spring);animation:revealUp .8s ease both;animation-timeline:view();animation-range:entry 0% cover 28%" style-hover="transform:translateY(-6px) rotate(0.5deg);border-color:var(--color-accent)">
+      <div class="card-kicker">04</div>
+      <div class="card-title" style="font-size:19px">Łączysz składniki bezpiecznie</div>
+      <p class="card-body" style="font-size:14px">Znasz zasady łączenia składników aktywnych i unikasz potencjalnie drażniących połączeń.</p>
+    </div>
+    <div class="card" style="padding:28px;transition:transform .3s var(--ease-spring), border-color .3s var(--ease-spring);animation:revealUp .8s ease .08s both;animation-timeline:view();animation-range:entry 0% cover 28%" style-hover="transform:translateY(-6px) rotate(-0.5deg);border-color:var(--color-accent)">
+      <div class="card-kicker">05</div>
+      <div class="card-title" style="font-size:19px">Dobierasz pielęgnację do problemu</div>
+      <p class="card-body" style="font-size:14px">Wiesz, co sprawdza się przy przebarwieniach, przetłuszczaniu, wypryskach, rumieniu czy odwodnieniu.</p>
+    </div>
+    <div class="card" style="padding:28px;transition:transform .3s var(--ease-spring), border-color .3s var(--ease-spring);animation:revealUp .8s ease .16s both;animation-timeline:view();animation-range:entry 0% cover 28%" style-hover="transform:translateY(-6px) rotate(0.5deg);border-color:var(--color-accent)">
+      <div class="card-kicker">06</div>
+      <div class="card-title" style="font-size:19px">Kupujesz świadomie</div>
+      <p class="card-body" style="font-size:14px">Oceniasz działanie kosmetyków i przestajesz wybierać je na podstawie reklamy czy obietnic producenta.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--color-bg-dark);color:var(--color-bg)">
+  <div style="max-width:1100px;margin:0 auto;padding:clamp(64px,9vw,120px) clamp(20px,5vw,72px);text-align:center">
+    <span style="display:block;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 24px;animation:revealFade .8s ease both;animation-timeline:view();animation-range:entry 0% cover 30%">Obietnica kursu</span>
+    <p style="font-family:var(--font-heading);font-weight:700;font-size:clamp(26px,3.6vw,46px);line-height:1.2;margin:0;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 30%">„Nauczysz się świadomie czytać składy, kupować tylko te kosmetyki, które naprawdę będą działać na Twojej skórze — i&nbsp;stworzysz pielęgnację <em style="font-style:italic;color:var(--color-accent-400)">dopasowaną do siebie</em>.”</p>
+    <p style="margin:28px 0 0;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:color-mix(in srgb, var(--color-bg) 70%, transparent);animation:revealFade .8s ease .2s both;animation-timeline:view();animation-range:entry 0% cover 30%">— Olga Pavlenko</p>
+  </div>
+</section>
+
+<section style="max-width:1000px;margin:0 auto;padding:clamp(48px,7vw,80px) clamp(20px,5vw,72px)">
+  <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(24px,2.8vw,34px);text-transform:uppercase;letter-spacing:0.01em;text-align:center;margin:0 0 36px;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 26%">Nie potrzebujesz kolejnego kremu — potrzebujesz wiedzy jak ułożyć skuteczny schemat, <em style="font-style:italic;color:var(--color-accent-700)">który będzie działać</em></h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px">
+    <div class="card" style="padding:26px;animation:revealLeft .9s ease both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div class="card-kicker">Dziś</div>
+      <div class="card-title" style="font-size:16px;text-transform:uppercase">W Twojej łazience</div>
+      <p class="card-body" style="font-size:14px">Kupujesz kosmetyki pod wpływem reklamy albo polecenia znajomej. Mieszasz ze sobą przypadkowe kwasy, retinol i serum z niacynamidem. Skóra reaguje podrażnieniem albo brakiem jakiejkolwiek poprawy — a Ty tracisz kolejne złotówki.</p>
+    </div>
+    <div class="card" style="padding:26px;background:color-mix(in srgb, var(--color-accent) 6%, transparent);animation:revealRight .9s ease .1s both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div class="card-kicker" style="color:var(--color-accent-700)">Po kursie</div>
+      <div class="card-title" style="font-size:16px;text-transform:uppercase">Po Skin Code</div>
+      <p class="card-body" style="font-size:14px">Bierzesz kosmetyk do ręki i w 30 sekund wiesz, czy jego skład zadziała na Twoją skórę. Układasz prosty schemat poranny i wieczorny. Płacisz tylko za to, co przynosi realną zmianę.</p>
+    </div>
+  </div>
+</section>
+
+<section id="dla-kogo" style="max-width:1280px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(20px,5vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,5vw,72px);align-items:start;position:relative">
+  <div class="sticky-media">
+    <figure style="margin:0;background:var(--color-bg);padding:12px 12px 16px;--rot:-2deg;transform:rotate(-2deg);border:2px solid var(--color-text);box-shadow:var(--shadow-hard);animation:revealUpRot 1s ease both;animation-timeline:view();animation-range:entry 0% cover 25%">
+      <div style="overflow:hidden;aspect-ratio:3/4">
+        <img src="assets/img/olga-kawiarnia-1.jpg" width="900" height="1200" alt="Olga Pavlenko w kawiarni we Wrocławiu" style="width:100%;height:100%;object-fit:cover;animation:driftYSlow linear both;animation-timeline:view();animation-range:cover">
+      </div>
+      <figcaption style="padding:10px 4px 0;font-size:13px;font-style:italic;color:color-mix(in srgb, var(--color-text) 72%, transparent)">Znasz to uczucie chaosu w pielęgnacji?</figcaption>
+    </figure>
+    <figure style="margin:-14% 0 0 32%;background:var(--color-bg);padding:10px 10px 12px;width:64%;--rot:3deg;transform:rotate(3deg);border:2px solid var(--color-text);box-shadow:var(--shadow-hard-sm);animation:revealUpRot 1s ease .15s both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div style="overflow:hidden;aspect-ratio:1/1">
+        <img src="assets/img/olga-kawiarnia-2.jpg" width="900" height="1200" alt="Olga Pavlenko przy kawie" style="width:100%;height:100%;object-fit:cover">
+      </div>
+    </figure>
+  </div>
+  <div>
+    <span class="section-kicker">Rozdział 02 · Dla kogo</span>
+    <hr class="section-rule">
+    <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3.4vw,44px);text-transform:uppercase;letter-spacing:0.01em;margin:0 0 36px;max-width:24ch;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 24%">Ten kurs jest dla Ciebie, <em style="font-style:italic;color:var(--color-accent-700)">jeśli…</em></h2>
+    <div style="display:flex;flex-direction:column">
+      <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--color-divider);animation:revealRight .8s ease both;animation-timeline:view();animation-range:entry 0% cover 24%">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1;color:var(--color-accent-700);min-width:52px">01</span>
+        <div><strong class="pain-title">Nie wiesz, od czego zacząć</strong>
+        <p style="margin:0;font-size:16px;line-height:1.55">Chcesz nauczyć się dbać o swoją skórę albo rozwiązać konkretny problem — przebarwienia, przetłuszczanie, wypryski, rumień — ale nie wiesz, jak się za to zabrać.</p></div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--color-divider);animation:revealRight .8s ease .06s both;animation-timeline:view();animation-range:entry 0% cover 24%">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1;color:var(--color-accent-700);min-width:52px">02</span>
+        <div><strong class="pain-title">Chaos informacyjny i sprzeczne porady</strong>
+        <p style="margin:0;font-size:16px;line-height:1.55">Szukasz porad na Instagramie i TikToku, a w głowie masz tylko większy mętlik — jeden ekspert poleca kwas, inny przed nim ostrzega, a Ty wciąż nie wiesz, co zmodyfikować.</p></div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--color-divider);animation:revealRight .8s ease .12s both;animation-timeline:view();animation-range:entry 0% cover 24%">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1;color:var(--color-accent-700);min-width:52px">03</span>
+        <div><strong class="pain-title">Łazienka pełna kosmetyków, a skóra bez zmian</strong>
+        <p style="margin:0;font-size:16px;line-height:1.55">Masz półkę uginającą się pod kremami i serami, ale skóra wciąż się przetłuszcza, jest poszarzała, przesuszona albo nawracają wypryski — i nie wiesz, czy to wina produktów, czy sposobu ich stosowania.</p></div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--color-divider);animation:revealRight .8s ease .18s both;animation-timeline:view();animation-range:entry 0% cover 24%">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1;color:var(--color-accent-700);min-width:52px">04</span>
+        <div><strong class="pain-title">Boisz się silnych składników</strong>
+        <p style="margin:0;font-size:16px;line-height:1.55">Chciałabyś wdrożyć retinol, retinal, kwas azelainowy czy witaminę C, ale boisz się podrażnienia, zaczerwienienia i zniszczenia bariery hydrolipidowej — więc wolisz ich w ogóle nie dotykać.</p></div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--color-divider);animation:revealRight .8s ease .24s both;animation-timeline:view();animation-range:entry 0% cover 24%">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1;color:var(--color-accent-700);min-width:52px">05</span>
+        <div><strong class="pain-title">Kupujesz pod wpływem impulsu i marketingu</strong>
+        <p style="margin:0;font-size:16px;line-height:1.55">Dajesz się skusić obietnicom na etykiecie („efekt liftingu w 7 dni”), a potem produkt ląduje na dnie szuflady — i żałujesz kolejnego zakupu.</p></div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 0;animation:revealRight .8s ease .3s both;animation-timeline:view();animation-range:entry 0% cover 24%">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1;color:var(--color-accent-700);min-width:52px">06</span>
+        <div><strong class="pain-title">Chodzisz od specjalisty do specjalisty bez stałego planu</strong>
+        <p style="margin:0;font-size:16px;line-height:1.55">Korzystasz z zabiegów, ale nie wiesz, jak prawidłowo dbać o skórę w domu między wizytami — przez co efekty gabinetowe szybko znikają.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="o-mnie" style="max-width:1280px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(20px,5vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,5vw,72px);align-items:center;position:relative">
+  <div style="position:relative">
+    <figure style="margin:0;background:var(--color-bg);padding:12px 12px 16px;--rot:-1.5deg;transform:rotate(-1.5deg);border:2px solid var(--color-text);box-shadow:var(--shadow-hard);animation:revealUpRot 1.1s cubic-bezier(.2,.7,.2,1) both;animation-timeline:view();animation-range:entry 0% cover 30%">
+      <div style="overflow:hidden;aspect-ratio:4/5">
+        <img src="assets/img/olga-gabinet-1.jpg" width="554" height="1200" alt="Olga Pavlenko w gabinecie kosmetologicznym" style="width:100%;height:100%;object-fit:cover;animation:driftYSlow linear both;animation-timeline:view();animation-range:cover">
+      </div>
+      <figcaption style="padding:10px 4px 0;font-size:13px;font-style:italic;color:color-mix(in srgb, var(--color-text) 72%, transparent)">W gabinecie — Wrocław</figcaption>
+    </figure>
+    <span class="tag tag-accent" style="position:absolute;top:-10px;left:8%;transform:rotate(-4deg);z-index:2">kosmetolog</span>
+  </div>
+  <div>
+    <span class="section-kicker">Rozdział 03 · Prowadząca</span>
+    <hr class="section-rule">
+    <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3.4vw,44px);text-transform:uppercase;letter-spacing:0.01em;margin:0 0 28px;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 24%">To ja</h2>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--color-divider);animation:revealUp .8s ease both;animation-timeline:view();animation-range:entry 0% cover 26%">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:clamp(20px,2.2vw,26px);line-height:1.2;color:var(--color-accent-700);min-width:110px">FAKT 01</span>
+        <p style="margin:0;font-size:15px;line-height:1.55">Kosmetolog z 10-letnim doświadczeniem pracy klinicznej. Aktualnie współpracuje z Centrum Medycyny Estetycznej i Laseroterapii Dermamed we Wrocławiu, gdzie codziennie dobiera pielęgnację i zabiegi do potrzeb skóry pacjentów.</p>
+      </div>
+      <div style="display:flex;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--color-divider);animation:revealUp .8s ease .06s both;animation-timeline:view();animation-range:entry 0% cover 26%">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:clamp(20px,2.2vw,26px);line-height:1.2;color:var(--color-accent-700);min-width:110px">FAKT 02</span>
+        <p style="margin:0;font-size:15px;line-height:1.55">Codziennie pracuje z realnymi przypadkami i wie nie tylko jak pracować ze skórą z trądzikiem, przebarwieniami, bliznami, rumieniem, nadmierną suchością lub łojotokiem, ale również jak w sposób prosty i klarowny wytłumaczyć, jak rozwiązać dany problem.</p>
+      </div>
+      <div style="display:flex;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--color-divider);animation:revealUp .8s ease .12s both;animation-timeline:view();animation-range:entry 0% cover 26%">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:clamp(20px,2.2vw,26px);line-height:1.2;color:var(--color-accent-700);min-width:110px">FAKT 03</span>
+        <p style="margin:0;font-size:15px;line-height:1.55">Autorka materiałów i artykułów naukowych oraz guidebooka „Skincare”.</p>
+      </div>
+      <div style="display:flex;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--color-divider);animation:revealUp .8s ease .18s both;animation-timeline:view();animation-range:entry 0% cover 26%">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:clamp(20px,2.2vw,26px);line-height:1.2;color:var(--color-accent-700);min-width:110px">FAKT 04</span>
+        <p style="margin:0;font-size:15px;line-height:1.55">Twórczyni <a href="https://www.instagram.com/my.true.cosmetology/" target="_blank" rel="noopener" style="color:var(--color-accent-700)">@my.true.cosmetology</a> — ponad 55 000 obserwujących na Instagramie i TikToku.</p>
+      </div>
+      <div style="display:flex;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--color-divider);animation:revealUp .8s ease .24s both;animation-timeline:view();animation-range:entry 0% cover 26%">
+        <span style="font-family:var(--font-heading);font-weight:700;font-size:clamp(20px,2.2vw,26px);line-height:1.2;color:var(--color-accent-700);min-width:110px">FAKT 05</span>
+        <p style="margin:0;font-size:15px;line-height:1.55">Współpracuje z najlepszymi markami kosmetycznymi, które bazują na profesjonalnych składach oraz skutecznych formułach.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(20px,5vw,72px);position:relative">
+  <span class="section-kicker">Rozdział 04 · Format</span>
+  <hr class="section-rule">
+  <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3.4vw,44px);text-transform:uppercase;letter-spacing:0.01em;margin:0 0 16px;max-width:28ch;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 24%">Jak wygląda nauka</h2>
+  <p style="font-size:16px;line-height:1.6;max-width:60ch;margin:0 0 44px;color:color-mix(in srgb, var(--color-text) 78%, transparent)">Dostęp do kursu jest nieograniczony czasowo, a kolejne lekcje otwierają się w miarę Twoich postępów — uczysz się w tempie, które sobie ustalasz samodzielnie.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px">
+    <div class="card" style="padding:24px;transition:transform .3s var(--ease-spring), border-color .3s var(--ease-spring);animation:revealUp .8s ease both;animation-timeline:view();animation-range:entry 0% cover 28%" style-hover="transform:translateY(-6px) rotate(-0.5deg);border-color:var(--color-accent)">
+      <div class="card-kicker">01</div>
+      <div class="card-title" style="font-size:17px">Wideo-lekcje</div>
+      <p class="card-body" style="font-size:13px">27 lekcji w formie nagrań wideo z prezentacją, oglądanych w Twoim tempie.</p>
+    </div>
+    <div class="card" style="padding:24px;transition:transform .3s var(--ease-spring), border-color .3s var(--ease-spring);animation:revealUp .8s ease .08s both;animation-timeline:view();animation-range:entry 0% cover 28%" style-hover="transform:translateY(-6px) rotate(0.5deg);border-color:var(--color-accent)">
+      <div class="card-kicker">02</div>
+      <div class="card-title" style="font-size:17px">Konspekty PDF</div>
+      <p class="card-body" style="font-size:13px">Do każdej lekcji dostajesz konspekt, do którego wracasz bez przewijania wideo.</p>
+    </div>
+    <div class="card" style="padding:24px;transition:transform .3s var(--ease-spring), border-color .3s var(--ease-spring);animation:revealUp .8s ease .16s both;animation-timeline:view();animation-range:entry 0% cover 28%" style-hover="transform:translateY(-6px) rotate(-0.5deg);border-color:var(--color-accent)">
+      <div class="card-kicker">03</div>
+      <div class="card-title" style="font-size:17px">Zadania domowe</div>
+      <p class="card-body" style="font-size:13px">Prawie każda lekcja kończy się zadaniem — z feedbackiem Olgi w pakiecie Mentoring.</p>
+    </div>
+    <div class="card" style="padding:24px;transition:transform .3s var(--ease-spring), border-color .3s var(--ease-spring);animation:revealUp .8s ease .24s both;animation-timeline:view();animation-range:entry 0% cover 28%" style-hover="transform:translateY(-6px) rotate(0.5deg);border-color:var(--color-accent)">
+      <div class="card-kicker">04</div>
+      <div class="card-title" style="font-size:17px">Baza preparatów</div>
+      <p class="card-body" style="font-size:13px">Lista rekomendowanych kosmetyków — punkt wyjścia do własnych poszukiwań.</p>
+    </div>
+  </div>
+</section>
+
+<section id="program" style="max-width:1280px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(20px,5vw,72px);position:relative">
+  <span class="section-kicker">Rozdział 05 · Program</span>
+  <hr class="section-rule">
+  <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3.4vw,44px);text-transform:uppercase;letter-spacing:0.01em;margin:0 0 44px;max-width:28ch;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 24%">27 lekcji, <em style="font-style:italic;color:var(--color-accent-700)">5 modułów</em></h2>
+
+  <div class="accordion program-accordion" style="position:relative;background:var(--color-surface);border:1px solid var(--color-divider);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 26%">
+    <div class="program-meta" style="display:flex;flex-wrap:wrap;border-bottom:1px solid var(--color-divider)">
+      <span style="flex:1;min-width:16ch;padding:12px 24px;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700">Skin Code — program kursu</span>
+      <span style="border-left:1px solid var(--color-divider);padding:12px 24px;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;color:color-mix(in srgb, var(--color-text) 70%, transparent)">27 lekcji</span>
+      <span style="border-left:1px solid var(--color-divider);padding:12px 24px;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;color:color-mix(in srgb, var(--color-text) 70%, transparent)">5 modułów</span>
+      <span style="border-left:1px solid var(--color-divider);padding:12px 24px;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;color:color-mix(in srgb, var(--color-text) 70%, transparent)">PL</span>
+    </div>
+
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:19px;text-transform:uppercase;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)">
+        <span class="module-name">Moduł I — Poznaj swoją skórę</span>
+        <span class="module-range">Lekcje 1–2</span>
+      <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <ol style="list-style:none;margin:0;padding:0 24px 24px;display:flex;flex-direction:column;gap:10px">
+          <li class="lesson"><span class="lesson-num">01</span><span class="lesson-title">Jak określić rodzaj skóry i jej potrzeby?</span></li>
+          <li class="lesson"><span class="lesson-num">02</span><span class="lesson-title">Dodatkowe czynniki, które mają wpływ na dobór pielęgnacji</span></li>
+        </ol>
+        <p class="module-outcome"><strong style="font-family:var(--font-heading)">Rezultat po Module I:</strong> Wiesz dokładnie, jaki masz rodzaj skóry i w jakiej jest kondycji — przestajesz mylić skórę suchą z odwodnioną i wiesz, na co zwracać uwagę przy zmianie pór roku czy stylu życia.</p>
+      </div>
+      </div>
+    </details>
+
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:19px;text-transform:uppercase;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)">
+        <span class="module-name">Moduł II — Baza codziennej pielęgnacji</span>
+        <span class="module-range">Lekcje 3–8</span>
+      <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <ol style="list-style:none;margin:0;padding:0 24px 24px;display:flex;flex-direction:column;gap:10px">
+          <li class="lesson"><span class="lesson-num">03</span><span class="lesson-title">Oczyszczanie skóry</span></li>
+          <li class="lesson"><span class="lesson-num">04</span><span class="lesson-title">Demakijaż — olejek hydrofilowy czy płyn micelarny?</span></li>
+          <li class="lesson"><span class="lesson-num">05</span><span class="lesson-title">Podstawy analizy składów</span></li>
+          <li class="lesson"><span class="lesson-num">06</span><span class="lesson-title">Nawilżanie skóry</span></li>
+          <li class="lesson"><span class="lesson-num">07</span><span class="lesson-title">Jak dobrać krem nawilżający?</span></li>
+          <li class="lesson"><span class="lesson-num">08</span><span class="lesson-title">Ochrona przeciwsłoneczna. Jak dobrać właściwy preparat z SPF?</span></li>
+        </ol>
+        <p class="module-outcome"><strong style="font-family:var(--font-heading)">Rezultat po Module II:</strong> Masz idealnie skomponowaną bazę pielęgnacyjną — wiesz, jak zmywać makijaż bez naruszania bariery naskórkowej, jak czytać etykiety i jak wybrać filtr SPF, który nie bieli i nie zapycha porów.</p>
+      </div>
+      </div>
+    </details>
+
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:19px;text-transform:uppercase;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)">
+        <span class="module-name">Moduł III — Skóra problematyczna i pielęgnacja aktywna</span>
+        <span class="module-range">Lekcje 9–10</span>
+      <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <ol style="list-style:none;margin:0;padding:0 24px 24px;display:flex;flex-direction:column;gap:10px">
+          <li class="lesson"><span class="lesson-num">09</span><span class="lesson-title">Pielęgnacja skóry problematycznej</span></li>
+          <li class="lesson"><span class="lesson-num">10</span><span class="lesson-title">Pielęgnacja aktywna — podstawy i zasady</span></li>
+        </ol>
+        <p class="module-outcome"><strong style="font-family:var(--font-heading)">Rezultat po Module III:</strong> Rozumiesz mechanizmy powstawania niedoskonałości, przebarwień i stanów zapalnych oraz znasz zasady bezpiecznego wprowadzania substancji aktywnych bez ryzyka wysypu i podrażnień.</p>
+      </div>
+      </div>
+    </details>
+
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:19px;text-transform:uppercase;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)">
+        <span class="module-name">Moduł IV — Składniki aktywne od A do Z</span>
+        <span class="module-range">Lekcje 11–23</span>
+      <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <ol style="list-style:none;margin:0;padding:0 24px 24px;display:flex;flex-direction:column;gap:10px">
+          <li class="lesson"><span class="lesson-num">11</span><span class="lesson-title">Niacynamid i pantenol</span></li>
+          <li class="lesson"><span class="lesson-num">12</span><span class="lesson-title">Witamina C</span></li>
+          <li class="lesson"><span class="lesson-num">13</span><span class="lesson-title">Komedogenność i składniki roślinne</span></li>
+          <li class="lesson"><span class="lesson-num">14</span><span class="lesson-title">Prebiotyki, probiotyki i postbiotyki</span></li>
+          <li class="lesson"><span class="lesson-num">15</span><span class="lesson-title">Kontrowersje i mity</span></li>
+          <li class="lesson"><span class="lesson-num">16</span><span class="lesson-title">Enzymy w kosmetykach</span></li>
+          <li class="lesson"><span class="lesson-num">17</span><span class="lesson-title">Kwasy AHA, PHA i kwas salicylowy</span></li>
+          <li class="lesson"><span class="lesson-num">18</span><span class="lesson-title">Kwas azelainowy</span></li>
+          <li class="lesson"><span class="lesson-num">19</span><span class="lesson-title">Retinoidy — zasady gry</span></li>
+          <li class="lesson"><span class="lesson-num">20</span><span class="lesson-title">Retinol</span></li>
+          <li class="lesson"><span class="lesson-num">21</span><span class="lesson-title">Retinal i bakuchiol</span></li>
+          <li class="lesson"><span class="lesson-num">22</span><span class="lesson-title">Neuropeptydy i peptydy poprawiające mikrokrążenie</span></li>
+          <li class="lesson"><span class="lesson-num">23</span><span class="lesson-title">Peptydy miorelaksacyjne, wyrównujące koloryt i kojące</span></li>
+        </ol>
+        <p class="module-outcome"><strong style="font-family:var(--font-heading)">Rezultat po Module IV:</strong> Znasz całe spektrum składników kosmetologicznych — wiesz, jak dobrać formę witaminy C, jak bezpiecznie budować tolerancję na retinol i retinal oraz jakie peptydy działają w celu anti-age, a jakie zmniejszają rumień.</p>
+      </div>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:19px;text-transform:uppercase;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)">
+        <span class="module-name">Moduł V — Twój własny plan</span>
+        <span class="module-range">Lekcje 24–27</span>
+      <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <ol style="list-style:none;margin:0;padding:0 24px 24px;display:flex;flex-direction:column;gap:10px">
+          <li class="lesson"><span class="lesson-num">24</span><span class="lesson-title">Składniki, które rozwiążą Twój problem ze skórą</span></li>
+          <li class="lesson"><span class="lesson-num">25</span><span class="lesson-title">Łączenie składników</span></li>
+          <li class="lesson"><span class="lesson-num">26</span><span class="lesson-title">Układamy schemat pielęgnacyjny</span></li>
+          <li class="lesson"><span class="lesson-num">27</span><span class="lesson-title">Gadżety i akcesoria w pielęgnacji domowej</span></li>
+        </ol>
+        <p class="module-outcome"><strong style="font-family:var(--font-heading)">Rezultat po Module V:</strong> Tworzysz swój własny, kompletny schemat pielęgnacji na rano i wieczór — wiesz, co stosować w poniedziałek, co w czwartek, i jak modyfikować plan w zależności od reakcji skóry.</p>
+      </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="lista" style="background:var(--color-bg-dark);color:var(--color-bg)">
+  <div style="max-width:1100px;margin:0 auto;padding:clamp(56px,8vw,96px) clamp(20px,5vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(32px,5vw,64px);align-items:center">
+    <div>
+      <span class="section-kicker" style="color:var(--color-accent-400)">Zanim kupisz</span>
+      <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(26px,3.2vw,40px);text-transform:uppercase;letter-spacing:0.01em;margin:0 0 16px;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 26%">Obejrzyj jedną lekcję <em style="font-style:italic;color:var(--color-accent-400)">za darmo</em></h2>
+      <p style="font-size:16px;line-height:1.65;margin:0 0 20px;color:color-mix(in srgb, var(--color-bg) 85%, transparent)">Wysyłam Ci <strong>Lekcję 1 — „Jak określić rodzaj skóry i jej potrzeby?”</strong>: tę samą, którą kupujesz w kursie. To punkt wyjścia do całej reszty — bez niego każdy kolejny wybór kosmetyku jest zgadywaniem. Obejrzysz ją w całości i sama ocenisz, czy chcesz więcej.</p>
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px">
+        <li style="display:flex;gap:10px;font-size:15px;color:color-mix(in srgb, var(--color-bg) 88%, transparent)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;margin-top:4px;color:var(--color-accent-400)"><path d="M20 6 9 17l-5-5"/></svg>Lekcja wideo + konspekt PDF, zaraz po potwierdzeniu e-maila</li>
+        <li style="display:flex;gap:10px;font-size:15px;color:color-mix(in srgb, var(--color-bg) 88%, transparent)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;margin-top:4px;color:var(--color-accent-400)"><path d="M20 6 9 17l-5-5"/></svg>Powiadomienie w dniu startu przedsprzedaży, żeby nie przegapić niższej ceny</li>
+        <li style="display:flex;gap:10px;font-size:15px;color:color-mix(in srgb, var(--color-bg) 88%, transparent)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;margin-top:4px;color:var(--color-accent-400)"><path d="M20 6 9 17l-5-5"/></svg>Zero spamu — wypisujesz się jednym kliknięciem</li>
+      </ul>
+    </div>
+
+    <div class="card" style="padding:clamp(24px,3vw,32px);gap:14px;animation:revealUp .9s ease .1s both;animation-timeline:view();animation-range:entry 0% cover 26%">
+      
+      <form id="ml-form" action="#lista" method="post" style="display:flex;flex-direction:column;gap:14px">
+        <div class="field">
+          <label for="ml-email">Twój e-mail</label>
+          <input class="input" id="ml-email" type="email" name="fields[email]" required autocomplete="email" placeholder="anna@example.com" style="min-height:48px">
+        </div>
+        <label style="display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.5;cursor:pointer;color:color-mix(in srgb, var(--color-text) 78%, transparent)">
+          <input type="checkbox" name="fields[zgoda_marketingowa]" value="tak" required style="margin-top:3px;flex:none;width:18px;height:18px;accent-color:var(--color-accent)">
+          <span>Chcę dostać darmową lekcję i wiadomość o starcie przedsprzedaży. Wiem, że mogę wypisać się w każdej chwili — <a href="polityka-prywatnosci.html">polityka prywatności</a>.</span>
+        </label>
+        <input type="hidden" name="ml-submit" value="1">
+        <button class="btn btn-primary btn-block" type="submit" style="min-height:52px;font-size:15px">Wyślijcie mi lekcję</button>
+        <p style="margin:0;font-size:12px;text-align:center;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Administrator danych: DBMP · {{ contactEmail }}</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(20px,5vw,72px);position:relative">
+  <span class="section-kicker">Rozdział 06 · Poza gabinetem</span>
+  <hr class="section-rule">
+  <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3.4vw,44px);text-transform:uppercase;letter-spacing:0.01em;margin:0 0 16px;max-width:28ch;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 24%">Prawdziwa osoba, <em style="font-style:italic;color:var(--color-accent-700)">nie tylko ekspertka</em></h2>
+  <p style="font-size:16px;line-height:1.6;max-width:60ch;margin:0 0 44px;color:color-mix(in srgb, var(--color-text) 78%, transparent)">Za składami INCI i schematami pielęgnacyjnymi stoi osoba, która sama testuje to, czego uczy — w gabinecie, w podróży i w codziennym życiu.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:20px">
+    <figure style="margin:0;background:var(--color-bg);padding:10px 10px 12px;--rot:-2deg;transform:rotate(-2deg);border:2px solid var(--color-text);box-shadow:var(--shadow-hard-sm);animation:revealUpRot .9s ease both;animation-timeline:view();animation-range:entry 0% cover 25%">
+      <div style="overflow:hidden;aspect-ratio:3/4">
+        <img src="assets/img/olga-basen-1.jpg" width="900" height="1200" alt="Olga Pavlenko — kadr z podróży" style="width:100%;height:100%;object-fit:cover;animation:driftY linear both;animation-timeline:view();animation-range:cover">
+      </div>
+    </figure>
+    <figure style="margin:0;background:var(--color-bg);padding:10px 10px 12px;--rot:1.8deg;transform:rotate(1.8deg);border:2px solid var(--color-text);box-shadow:var(--shadow-hard-sm);animation:revealUpRot .9s ease .08s both;animation-timeline:view();animation-range:entry 0% cover 25%">
+      <div style="overflow:hidden;aspect-ratio:3/4">
+        <img src="assets/img/olga-gabinet-2.jpg" width="900" height="1200" alt="Olga Pavlenko w gabinecie kosmetologicznym" style="width:100%;height:100%;object-fit:cover;animation:driftYSlow linear both;animation-timeline:view();animation-range:cover">
+      </div>
+    </figure>
+    <figure style="margin:0;background:var(--color-bg);padding:10px 10px 12px;--rot:-1.5deg;transform:rotate(-1.5deg);border:2px solid var(--color-text);box-shadow:var(--shadow-hard-sm);animation:revealUpRot .9s ease .16s both;animation-timeline:view();animation-range:entry 0% cover 25%">
+      <div style="overflow:hidden;aspect-ratio:3/4">
+        <img src="assets/img/olga-basen-2.jpg" width="900" height="1200" alt="Olga Pavlenko — kadr z podróży" style="width:100%;height:100%;object-fit:cover;animation:driftY linear both;animation-timeline:view();animation-range:cover">
+      </div>
+    </figure>
+    <figure style="margin:0;background:var(--color-bg);padding:10px 10px 12px;--rot:2.2deg;transform:rotate(2.2deg);border:2px solid var(--color-text);box-shadow:var(--shadow-hard-sm);animation:revealUpRot .9s ease .24s both;animation-timeline:view();animation-range:entry 0% cover 25%">
+      <div style="overflow:hidden;aspect-ratio:3/4">
+        <img src="assets/img/olga-wnetrze.jpg" width="900" height="1200" alt="Olga Pavlenko we wnętrzu przy oknie" style="width:100%;height:100%;object-fit:cover;animation:driftYSlow linear both;animation-timeline:view();animation-range:cover">
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section id="cennik" style="max-width:1280px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(20px,5vw,72px);position:relative">
+  <span class="section-kicker">Rozdział 07 · Cennik</span>
+  <hr class="section-rule">
+  <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3.4vw,44px);text-transform:uppercase;letter-spacing:0.01em;margin:0 0 44px;max-width:28ch;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 24%">Wybierz swój pakiet</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:32px">
+    <div class="card" style="padding:36px;gap:16px;transition:transform .3s var(--ease-spring), border-color .3s var(--ease-spring);animation:revealLeft .9s ease both;animation-timeline:view();animation-range:entry 0% cover 26%" style-hover="transform:translateY(-6px);border-color:var(--color-accent)">
+      <div class="card-kicker">Pakiet</div>
+      <div class="card-title" style="font-size:26px;text-transform:uppercase">Basic</div>
+      <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:4px 0">
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:44px">{{ priceBasic }}</div>
+        <sc-if value="{{ presaleActive }}" hint-placeholder-val="{{ true }}"><span style="font-size:16px;text-decoration:line-through;color:color-mix(in srgb, var(--color-text) 50%, transparent)">{{ priceBasicRegular }}</span></sc-if>
+      </div>
+      <sc-if value="{{ presaleActive }}" hint-placeholder-val="{{ true }}"><span class="tag tag-accent" style="align-self:flex-start;margin:-4px 0 4px;white-space:nowrap">Oszczędzasz&nbsp;{{ savingsBasic }}</span></sc-if>
+      <ul style="list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:12px">
+        <li style="display:flex;gap:10px;font-size:15px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="flex:none;margin-top:3px;color:var(--color-accent-700)"><path d="M20 6 9 17l-5-5"/></svg>Szkolenie w formie nagrań wideo i prezentacji</li>
+        <li style="display:flex;gap:10px;font-size:15px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="flex:none;margin-top:3px;color:var(--color-accent-700)"><path d="M20 6 9 17l-5-5"/></svg>Dostęp do kursu nieograniczony czasowo</li>
+        <li style="display:flex;gap:10px;font-size:15px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="flex:none;margin-top:3px;color:var(--color-accent-700)"><path d="M20 6 9 17l-5-5"/></svg>Dodatkowe materiały i narzędzia pomocnicze</li>
+        <li style="display:flex;gap:10px;font-size:15px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="flex:none;margin-top:3px;color:var(--color-accent-700)"><path d="M20 6 9 17l-5-5"/></svg>Baza rekomendowanych preparatów</li>
+      </ul>
+      <a class="btn btn-secondary btn-block" href="{{ ctaHref }}" style="margin-top:20px;min-height:48px;padding:14px 24px;font-size:15px">{{ ctaPlan }}</a>
+    </div>
+    <div class="card" style="padding:36px;gap:16px;background:var(--color-bg-dark);color:var(--color-bg);transition:transform .3s var(--ease-spring), border-color .3s var(--ease-spring);animation:revealRight .9s ease .1s both;animation-timeline:view();animation-range:entry 0% cover 26%" style-hover="transform:translateY(-6px);border-color:var(--color-accent-400)">
+      <span class="tag" style="align-self:flex-start;transform:rotate(-2deg);background:var(--color-accent);color:#fff">Z mentoringiem</span>
+      <div class="card-title" style="font-size:26px;text-transform:uppercase;color:var(--color-bg)">Mentoring</div>
+      <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:4px 0">
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:44px">{{ priceMentoring }}</div>
+        <sc-if value="{{ presaleActive }}" hint-placeholder-val="{{ true }}"><span style="font-size:16px;text-decoration:line-through;color:color-mix(in srgb, var(--color-bg) 60%, transparent)">{{ priceMentoringRegular }}</span></sc-if>
+      </div>
+      <sc-if value="{{ presaleActive }}" hint-placeholder-val="{{ true }}"><span style="align-self:flex-start;font-size:13px;font-weight:700;color:var(--color-accent-400);margin:-4px 0 4px;white-space:nowrap">Oszczędzasz&nbsp;{{ savingsMentoring }}</span></sc-if>
+      <ul style="list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:12px">
+        <li style="display:flex;gap:10px;font-size:15px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="flex:none;margin-top:3px;color:var(--color-accent-400)"><path d="M20 6 9 17l-5-5"/></svg>Wszystko, co w pakiecie Basic</li>
+        <li style="display:flex;gap:10px;font-size:15px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="flex:none;margin-top:3px;color:var(--color-accent-400)"><path d="M20 6 9 17l-5-5"/></svg>Wsparcie eksperckie w przeanalizowaniu potrzeb skóry i doborze pielęgnacji (2 × 1h spotkanie online)</li>
+        <li style="display:flex;gap:10px;font-size:15px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="flex:none;margin-top:3px;color:var(--color-accent-400)"><path d="M20 6 9 17l-5-5"/></svg>Feedback do zadań domowych</li>
+      </ul>
+      <a class="btn btn-block" href="{{ ctaHref }}" style="margin-top:20px;min-height:48px;padding:14px 24px;font-size:15px;background:var(--color-bg);color:var(--color-accent-900);border-color:var(--color-bg)">{{ ctaPlan }}</a>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(20px,5vw,72px);position:relative">
+  <span class="section-kicker">Rozdział 08 · Referencje</span>
+  <hr class="section-rule">
+  <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3.4vw,44px);text-transform:uppercase;letter-spacing:0.01em;margin:0 0 44px;max-width:28ch;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 24%">Kurs dopiero startuje — <em style="font-style:italic;color:var(--color-accent-700)">ta wiedza pracuje od lat</em></h2>
+  <p style="font-size:16px;line-height:1.6;max-width:62ch;margin:-24px 0 44px;color:color-mix(in srgb, var(--color-text) 78%, transparent)">Poniżej referencje osób, które korzystały z konsultacji i opieki Olgi w gabinecie — to ta sama wiedza, którą dostajesz w Skin Code. Opinie uczestniczek kursu pojawią się tutaj po pierwszej edycji.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px">
+    <div class="card" style="padding:24px;gap:12px;animation:revealUp .8s ease both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Z czystym sumieniem polecam! Bardzo profesjonalne podejście, świetnie przeprowadzona konsultacja, wszystko dokładnie wytłumaczone, wiedza i zaangażowanie na najwyższym poziomie.”</p>
+      <div class="review-author">
+        <img class="review-avatar" src="assets/img/avatar-martyna.svg" width="36" height="36" alt="">
+        <div>
+          <div class="review-name">Martyna L.</div>
+          <div class="review-context">Pacjentka gabinetu · Wrocław</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:24px;gap:12px;animation:revealUp .8s ease .06s both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Indywidualne i niezwykle profesjonalne podejście. Jej wiedza o skórze i składnikach kosmetyków sprawiła, że wreszcie zrozumiałam, czego potrzebuje moja skóra.”</p>
+      <div class="review-author">
+        <img class="review-avatar" src="assets/img/avatar-joanna.svg" width="36" height="36" alt="">
+        <div>
+          <div class="review-name">Joanna S.</div>
+          <div class="review-context">Konsultacja w gabinecie · Wrocław</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:24px;gap:12px;animation:revealUp .8s ease .12s both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Trafiłam do Olgi z podrażnioną barierą hydrolipidową po nieumiejętnym stosowaniu kwasów. Po ułożeniu prostego, logicznego schematu moja skóra uspokoiła się w 3 tygodnie.”</p>
+      <div class="review-author">
+        <img class="review-avatar" src="assets/img/avatar-katarzyna.svg" width="36" height="36" alt="">
+        <div>
+          <div class="review-name">Katarzyna W.</div>
+          <div class="review-context">Konsultacja i audyt kosmetyczki</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:24px;gap:12px;animation:revealUp .8s ease .18s both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Olga ma dar tłumaczenia skomplikowanych procesów biologicznych na ludzki język. Dzięki niej przestałam kupować modne kosmetyki z TikToka i zaczęłam świadomie czytać składy INCI.”</p>
+      <div class="review-author">
+        <img class="review-avatar" src="assets/img/avatar-paulina.svg" width="36" height="36" alt="">
+        <div>
+          <div class="review-name">Paulina M.</div>
+          <div class="review-context">Społeczność @my.true.cosmetology</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:24px;gap:12px;animation:revealUp .8s ease .24s both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Przez lata bałam się retinoidów po wcześniejszych podrażnieniach i łuszczeniu. Krok po kroku wytłumaczyła mi proces retynizacji i dobrała odpowiednie stężenie. Dziś moja skóra jest promienna i bez podrażnień.”</p>
+      <div class="review-author">
+        <img class="review-avatar" src="assets/img/avatar-agnieszka.svg" width="36" height="36" alt="">
+        <div>
+          <div class="review-name">Agnieszka B.</div>
+          <div class="review-context">Kuracja retinoidowa</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:24px;gap:12px;animation:revealUp .8s ease .3s both;animation-timeline:view();animation-range:entry 0% cover 28%">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Wiedza, którą przekazuje Olga, powinna być obowiązkowa dla każdej kobiety. Zamiast wydawać 400 zł na luksusowy krem z ładną etykietą, wiem, jak znaleźć świetny produkt z apteki z identycznym stężeniem substancji czynnych.”</p>
+      <div class="review-author">
+        <img class="review-avatar" src="assets/img/avatar-ewa.svg" width="36" height="36" alt="">
+        <div>
+          <div class="review-name">Ewa K.</div>
+          <div class="review-context">Analiza składów INCI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="max-width:1280px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(20px,5vw,72px);position:relative">
+  <span class="section-kicker">Rozdział 09 · FAQ</span>
+  <hr class="section-rule">
+  <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3.4vw,44px);text-transform:uppercase;letter-spacing:0.01em;margin:0 0 44px;max-width:28ch;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 24%">Najczęstsze pytania</h2>
+  <div class="accordion" style="position:relative;background:var(--color-surface);border:1px solid var(--color-divider);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 26%">
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:17px;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)">Czy potrzebuję wcześniejszej wiedzy, żeby zacząć?<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <p style="margin:0;padding:0 24px 20px;font-size:15px;line-height:1.6;max-width:70ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Nie. Kurs prowadzi Cię od podstaw: zaczynamy od określenia rodzaju skóry i budowy prostej pielęgnacji, a kolejne lekcje krok po kroku wprowadzają składniki aktywne.</p>
+      </div>
+      </div>
+    </details>
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:17px;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)">Jak długo mam dostęp do materiałów?<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <p style="margin:0;padding:0 24px 20px;font-size:15px;line-height:1.6;max-width:70ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Dostęp do kursu Skin Code jest nieograniczony czasowo — wracasz do lekcji i konspektów w dowolnym momencie, we własnym tempie.</p>
+      </div>
+      </div>
+    </details>
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:17px;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)">Czym różnią się pakiety Basic i Mentoring?<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <p style="margin:0;padding:0 24px 20px;font-size:15px;line-height:1.6;max-width:70ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Basic to 27 lekcji wideo z prezentacjami, konspekty PDF, dodatkowe materiały i baza rekomendowanych preparatów za {{ priceBasic }}. Mentoring zawiera to samo oraz dwa godzinne spotkania online i feedback do zadań domowych za {{ priceMentoring }}.</p>
+      </div>
+      </div>
+    </details>
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:17px;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)">Jak wygląda mentoring z Olgą?<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <p style="margin:0;padding:0 24px 20px;font-size:15px;line-height:1.6;max-width:70ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Olga kontaktuje się mailowo na adres podany podczas rejestracji, umawia dwa godzinne spotkania online dotyczące potrzeb Twojej skóry i doboru pielęgnacji oraz daje feedback do Twoich zadań domowych.</p>
+      </div>
+      </div>
+    </details>
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:17px;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)">Czy kurs zastępuje wizytę u dermatologa lub kosmetologa?<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <p style="margin:0;padding:0 24px 20px;font-size:15px;line-height:1.6;max-width:70ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Nie. Skin Code uczy świadomego doboru pielęgnacji i czytania składów, ale nie zastępuje diagnozy ani konsultacji lekarskiej — przy poważnych problemach skórnych warto skonsultować się ze specjalistą.</p>
+      </div>
+      </div>
+    </details>
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:17px;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)">W jakiej formie są lekcje?<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <p style="margin:0;padding:0 24px 20px;font-size:15px;line-height:1.6;max-width:70ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Każda lekcja to wideo-prezentacja plus konspekt w PDF; do wielu tematów dołączone są dodatkowe materiały, a prawie każda lekcja zawiera zadanie domowe.</p>
+      </div>
+      </div>
+    </details>
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:17px;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)">W jakim tempie otrzymuję kolejne lekcje?<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <p style="margin:0;padding:0 24px 20px;font-size:15px;line-height:1.6;max-width:70ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Kolejne lekcje otwierają się w miarę Twoich postępów — nie dostajesz 27 nagrań naraz, tylko następny krok wtedy, gdy poprzedni masz za sobą. Tempo ustalasz sama, a dostęp jest bezterminowy.</p>
+      </div>
+      </div>
+    </details>
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:17px;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)"><span>Czym kurs różni się od Twoich darmowych rolek?</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+        <div class="acc-inner">
+      <p style="margin:0;padding:0 24px 20px;font-size:15px;line-height:1.6;max-width:70ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Rolka odpowiada na jedno pytanie i nie wie nic o Twojej skórze. Kurs to 27 lekcji w kolejności: najpierw rozpoznajesz rodzaj swojej skóry i budujesz bazę, potem poznajesz składniki aktywne po kolei, a na końcu układasz z tego własny schemat na rano i wieczór. Dochodzą konspekty PDF, zasady bezpiecznego łączenia składników i baza rekomendowanych preparatów. Jeśli chcesz sprawdzić poziom przed zakupem — obejrzyj darmową lekcję o określeniu rodzaju skóry.</p>
+        </div>
+      </div>
+    </details>
+    <details class="acc" style="border-bottom:1px solid var(--color-divider)">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:17px;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)"><span>Czy mogę zwrócić kurs po zakupie?</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+        <div class="acc-inner">
+      <p style="margin:0;padding:0 24px 20px;font-size:15px;line-height:1.6;max-width:70ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Mówiąc wprost: nie. Dostęp do materiałów dostajesz od razu po zakupie, a zgadzając się na to, rezygnujesz z prawa odstąpienia od umowy w ciągu 14 dni — tak działa sprzedaż treści cyfrowych i tak jest to opisane w regulaminie. Właśnie dlatego udostępniam całą Lekcję 1 za darmo, aby każdy mógł ocenić sposób prowadzenia i poziom szczegółowości, zanim wyda pieniądze.</p>
+        </div>
+      </div>
+    </details>
+    <sc-if value="{{ presaleActive }}" hint-placeholder-val="{{ true }}">
+    <details class="acc">
+      <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-family:var(--font-heading);font-weight:700;font-size:17px;transition:background .25s ease" style-hover="background:color-mix(in srgb, var(--color-accent) 8%, transparent)"><span>Na czym polega przedsprzedaż 23–24 września?</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transition:transform 200ms var(--ease-spring)" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="acc-panel">
+      <div class="acc-inner">
+        <p style="margin:0;padding:0 24px 20px;font-size:15px;line-height:1.6;max-width:70ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Przedsprzedaż to jedyny moment, kiedy można dołączyć do kursu z rabatem — pakiet Basic za {{ priceBasic }} zamiast {{ priceBasicRegular }}, pakiet Mentoring za {{ priceMentoring }} zamiast {{ priceMentoringRegular }}. Dostęp do platformy kursowej jest nadawany na podany adres e-mail po zaksięgowaniu płatności.</p>
+      </div>
+      </div>
+    </details>
+    </sc-if>
+  </div>
+</section>
+
+<section style="background:var(--color-bg-dark);color:var(--color-bg)">
+  <div style="max-width:1280px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(20px,5vw,72px)">
+    <span style="display:block;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-300);margin:0 0 12px">Rozdział 10 · Start</span>
+    <hr style="height:1px;border:0;margin:0 0 32px;background:color-mix(in srgb, var(--color-bg) 25%, transparent);transform-origin:0 50%;animation:ruleGrow .9s ease both;animation-timeline:view();animation-range:entry 0% cover 22%">
+    <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,3.4vw,44px);text-transform:uppercase;letter-spacing:0.01em;margin:0 0 48px;max-width:28ch;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 24%">Co się dzieje po zapisie</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:40px">
+      <div style="animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 28%">
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:clamp(48px,5vw,72px);line-height:1;color:var(--color-accent-400);margin-bottom:16px">01</div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:22px;text-transform:uppercase;margin-bottom:10px">Wybierasz pakiet</div>
+        <p style="margin:0;font-size:15px;line-height:1.55;color:color-mix(in srgb, var(--color-bg) 82%, transparent)">Decydujesz, czy przechodzisz kurs samodzielnie (Basic), czy ze wsparciem Olgi (Mentoring). Płatność online zajmuje minutę.</p>
+      </div>
+      <div style="animation:revealUp .9s ease .1s both;animation-timeline:view();animation-range:entry 0% cover 28%">
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:clamp(48px,5vw,72px);line-height:1;color:var(--color-accent-400);margin-bottom:16px">02</div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:22px;text-transform:uppercase;margin-bottom:10px">Dostęp od razu</div>
+        <p style="margin:0;font-size:15px;line-height:1.55;color:color-mix(in srgb, var(--color-bg) 82%, transparent)">Dane do logowania trafiają na Twój e-mail automatycznie, zaraz po zaksięgowaniu płatności. Nie czekasz na start grupy — zaczynasz, kiedy chcesz.</p>
+      </div>
+      <div style="animation:revealUp .9s ease .2s both;animation-timeline:view();animation-range:entry 0% cover 28%">
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:clamp(48px,5vw,72px);line-height:1;color:var(--color-accent-400);margin-bottom:16px">03</div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:22px;text-transform:uppercase;margin-bottom:10px">Twoje tempo</div>
+        <p style="margin:0;font-size:15px;line-height:1.55;color:color-mix(in srgb, var(--color-bg) 82%, transparent)">Kolejne lekcje otwierają się w miarę Twoich postępów — nie zasypujemy Cię 27 nagraniami naraz. Zaczynasz od „Powitania na kursie” i idziesz dalej wtedy, kiedy masz na to głowę.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="position:relative;overflow:hidden;color:var(--color-bg);background:var(--color-bg-dark)">
+  <div style="position:absolute;inset:0">
+    <img src="assets/img/olga-kawiarnia-2.jpg" width="900" height="1200" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;animation:driftYSlow linear both;animation-timeline:view();animation-range:cover">
+  </div>
+  <div style="position:absolute;inset:0;background:color-mix(in srgb, var(--color-bg-dark) 78%, transparent)"></div>
+  <div style="position:relative;max-width:1280px;margin:0 auto;padding:clamp(72px,10vw,140px) clamp(20px,5vw,72px);text-align:center">
+    <h2 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(34px,5vw,64px);text-transform:uppercase;letter-spacing:0.01em;margin:0 0 20px;animation:revealUp .9s ease both;animation-timeline:view();animation-range:entry 0% cover 30%">Poświęć 15 minut dziennie i&nbsp;zrób porządek w&nbsp;nauce o własnej skórze i&nbsp;pielęgnacji</h2>
+    <a class="btn btn-primary" href="{{ ctaHref }}" style="padding:18px 36px;font-size:16px;transition:transform .25s var(--ease-spring);animation:revealUp .9s ease .2s both;animation-timeline:view();animation-range:entry 0% cover 30%" style-hover="transform:translateY(-2px)">{{ ctaMain }}</a>
+  </div>
+</section>
+
+</main>
+
+<div class="sticky-mobile-cta">
+  <div>
+    <sc-if value="{{ presaleActive }}" hint-placeholder-val="{{ true }}"><span style="display:block;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-accent-700)">{{ presaleLabel }}</span></sc-if>
+    <span style="display:block;font-family:var(--font-heading);font-weight:700;font-size:17px">od {{ priceBasic }}</span>
+  </div>
+  <a class="btn btn-primary" href="{{ ctaHref }}" style="min-height:44px;padding:10px 20px">{{ ctaShort }}</a>
+</div>
+
+<footer style="border-top:1px solid var(--color-divider)">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+      <div>
+        <div class="nav-brand" style="margin-bottom:6px">Skin Code</div>
+        <p style="margin:0;font-size:14px;line-height:1.55;max-width:40ch;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Kurs online Olgi Pavlenko o świadomej pielęgnacji skóry i czytaniu składów INCI.</p>
+      </div>
+    </div>
+
+    <div class="footer-contact">
+      <span>Masz pytanie? Napisz: <a href="{{ contactMailto }}">{{ contactEmail }}</a></span>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <a href="https://www.instagram.com/my.true.cosmetology/" target="_blank" rel="noopener">Instagram</a>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <a href="https://www.tiktok.com/@my.true.cosmetology" target="_blank" rel="noopener">TikTok</a>
+    </div>
+
+    <div class="footer-legal">
+      <span>© 2026 My True Cosmetology · Sprzedawca: DBMP · Ceny brutto (zawierają VAT)</span>
+      <span><a href="regulamin.html">Regulamin</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a></span>
+    </div>
+
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;checkoutUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#cennik&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Zapisy&quot;},&quot;priceBasic&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:399,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:0,&quot;step&quot;:10,&quot;unit&quot;:&quot; zł&quot;,&quot;section&quot;:&quot;Cennik (przedsprzedaż)&quot;},&quot;priceBasicRegular&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:699,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:0,&quot;step&quot;:10,&quot;unit&quot;:&quot; zł&quot;,&quot;section&quot;:&quot;Cennik (regularny)&quot;},&quot;priceMentoring&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1399,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:0,&quot;step&quot;:10,&quot;unit&quot;:&quot; zł&quot;,&quot;section&quot;:&quot;Cennik (przedsprzedaż)&quot;},&quot;priceMentoringRegular&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1799,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:0,&quot;step&quot;:10,&quot;unit&quot;:&quot; zł&quot;,&quot;section&quot;:&quot;Cennik (regularny)&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const checkoutUrl = this.props.checkoutUrl ?? '#cennik';
+    // Presale window: 23–24 September 2026. Flip to false (or delete this
+    // block) once the presale ends and prices revert to *Regular below.
+    const presaleActive = true;
+    const presaleLabel = 'Przedsprzedaż 23–24 września';
+    // Okno sprzedaży jeszcze nie otwarte: nic nie da się kupić, więc każde CTA
+    // prowadzi na listę oczekujących (#lista), a nie do cennika w próżnię.
+    // 23 września ustaw na true — CTA same przełączą się na zakup.
+    // Adres składany w locie: w serwowanym HTML nie ma ciągu pasującego do
+    // wzorca e-maila, więc scraper czytający źródło regexem go nie zbierze.
+    // Bot wykonujący JS i tak go zobaczy — to filtr na hałas, nie szczelna zapora.
+    const contactEmail = ['olga', 'pawlenko.com'].join('@');
+    const presaleOpen = false;
+    const ctaHref = presaleOpen ? checkoutUrl : '#lista';
+    const ctaMain = presaleOpen ? 'Dołącz w przedsprzedaży' : 'Odbierz darmową lekcję';
+    const ctaShort = presaleOpen ? 'Zapisz się' : 'Darmowa lekcja';
+    const ctaPlan = presaleOpen ? 'Wybierz' : 'Powiadom mnie o starcie';
+    const priceBasicRegular = this.props.priceBasicRegular ?? 699;
+    const priceMentoringRegular = this.props.priceMentoringRegular ?? 1799;
+    const priceBasicSale = this.props.priceBasic ?? 399;
+    const priceMentoringSale = this.props.priceMentoring ?? 1399;
+    const priceBasic = presaleActive ? priceBasicSale : priceBasicRegular;
+    const priceMentoring = presaleActive ? priceMentoringSale : priceMentoringRegular;
+    return {
+      checkoutUrl,
+      presaleActive,
+      presaleLabel,
+      presaleOpen,
+      presaleClosed: !presaleOpen,
+      ctaHref, ctaMain, ctaShort, ctaPlan,
+      contactEmail, contactMailto: 'mailto:' + contactEmail,
+      priceBasic: priceBasic + ' zł',
+      priceMentoring: priceMentoring + ' zł',
+      priceBasicRegular: priceBasicRegular + ' zł',
+      priceMentoringRegular: priceMentoringRegular + ' zł',
+      savingsBasic: (priceBasicRegular - priceBasicSale) + ' zł',
+      discountBasic: '-' + Math.round((1 - priceBasicSale / priceBasicRegular) * 100) + '%',
+      savingsMentoring: (priceMentoringRegular - priceMentoringSale) + ' zł',
+    };
+  }
+}
+</script>
+
+<script>
+// Pierścień tarczy rabatowej wypełniamy po renderze, a nie przez {{ }}: runtime DC
+// opakowuje każdą interpolację w <span>, którego SVG nie potrafi narysować wewnątrz
+// <textPath>. Wartość bierzemy z tarczy, więc pierścień nie rozjedzie się z ceną.
+// Obserwator zamiast jednorazowego przebiegu — treść pojawia się asynchronicznie,
+// a każdy ponowny render komponentu wyczyściłby tekst.
+(function () {
+  function uzupelnij() {
+    var tarcza = document.querySelector('.spin-badge-disc');
+    var sciezka = document.querySelector('.spin-badge-ring textPath');
+    if (!tarcza || !sciezka) return;
+    var v = (tarcza.textContent || '').trim();
+    if (!v || v.charAt(0) === '{') return;          // szablon jeszcze nie podstawiony
+    var chce = new Array(8).join(v + ' \u00b7 ');   // 7 powtórzeń wypełnia obwód
+    if (sciezka.textContent !== chce) sciezka.textContent = chce;
+  }
+  uzupelnij();
+  new MutationObserver(uzupelnij).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+
+<script>
+// Endpoint MailerLite zwraca surowy JSON, nie stronę — bez tego przechwycenia
+// odwiedzająca po wysłaniu formularza zobaczyłaby {"success":true} zamiast
+// podziękowania. Progresywne ulepszenie: bez JS formularz i tak wysyła e-mail
+// (ten sam action, zwykły POST), tylko ląduje na tej surowej odpowiedzi.
+(function () {
+  function podepnij() {
+    var form = document.getElementById('ml-form');
+    if (!form || form.dataset.wired) return;
+    form.dataset.wired = '1';
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var etykieta = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Wysyłam…'; }
+      fetch(form.action, { method: 'POST', body: new FormData(form) })
+        .then(function (r) { return r.json().catch(function () { return {}; }); })
+        .then(function (data) {
+          if (data && data.success) {
+            location.href = 'dziekujemy.html';
+          } else {
+            throw new Error('MailerLite: ' + JSON.stringify(data));
+          }
+        })
+        .catch(function (err) {
+          console.error(err);
+          if (window.toast) {
+            toast.error('Nie udało się zapisać e-maila', { description: 'Spróbuj ponownie za chwilę albo napisz do nas bezpośrednio.' });
+          }
+          if (btn) { btn.disabled = false; btn.textContent = etykieta; }
+        });
+    });
+  }
+  podepnij();
+  new MutationObserver(podepnij).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+</body>
+</html>

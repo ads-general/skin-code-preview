@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" role="img" aria-label="Monogram AB">
+  <circle cx="40" cy="40" r="39" fill="#e0e5da"/>
+  <circle cx="40" cy="40" r="38.25" fill="none" stroke="#a5bfa8" stroke-width="1.5"/>
+  <text x="40" y="40" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="27" font-weight="700" letter-spacing="0.5" fill="#2d5a3b" text-anchor="middle" dominant-baseline="central">AB</text>
+</svg>

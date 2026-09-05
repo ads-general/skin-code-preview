@@ -1,0 +1,499 @@
+/* Editorial Rebel — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md.
+   Redesign note: this replaces the earlier "Industry" blueprint system (steel-blue,
+   hairline frames, radius 0) with a warmer, rounder, higher-energy direct-response
+   voice — cream ground, warm-brown accent, pill buttons, hard offset shadows.
+   Pinned by the user against a reference build; the color ramp below is this
+   session's own work, not copied verbatim — see readme.md "Color" for the ramp
+   doctrine and the WCAG fix it makes over the reference. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,700;1,800&display=swap');
+
+:root {
+  --color-bg: #f8f5ee;
+  --color-surface: #ffffff;
+  --color-bg-subtle: #efece3;
+  --color-bg-dark: #17120e;
+  --color-bg-dark-card: #221b16;
+  --color-text: #17120e;
+  --color-text-light: #f8f5ee;
+  --color-accent: #8c6249;
+  --color-accent-2: #8c6249;
+  --color-divider: rgba(23, 18, 14, 0.13);
+
+  /* Tonal ramps — a warm-neutral scale from cream to near-black, and a full
+     100–900 ramp for the accent (the reference build only shipped five ad-hoc
+     accent variants with no text-safe deep step — see readme.md "Color"). */
+  --color-neutral-100: #f8f5ee;
+  --color-neutral-200: #efece3;
+  --color-neutral-300: #ddd8cb;
+  --color-neutral-400: #b8b2a2;
+  --color-neutral-500: #948d7d;
+  --color-neutral-600: #726c5f;
+  --color-neutral-700: #5a5a5a;
+  --color-neutral-800: #363330;
+  --color-neutral-900: #121212;
+
+  --color-accent-100: #f4ece4;
+  --color-accent-200: #e0cbb8;
+  --color-accent-300: #c8a88d;
+  --color-accent-400: #a87f63;
+  --color-accent-500: #8c6249;
+  --color-accent-600: #78503a;
+  --color-accent-700: #5f3d28;
+  --color-accent-800: #4a2e1e;
+  --color-accent-900: #2e1c12;
+
+  --color-accent-2-100: #f4ece4;
+  --color-accent-2-200: #e0cbb8;
+  --color-accent-2-300: #c8a88d;
+  --color-accent-2-400: #a87f63;
+  --color-accent-2-500: #8c6249;
+  --color-accent-2-600: #78503a;
+  --color-accent-2-700: #5f3d28;
+  --color-accent-2-800: #4a2e1e;
+  --color-accent-2-900: #2e1c12;
+
+  /* Semantic status — success and warning get their own muted hues so they
+     never get mistaken for the brand accent; error reuses the accent ramp's
+     own text-safe deep step, since "act now" and "something's wrong" sharing
+     red is the most conventional reading, not a collision. */
+  --color-success: #3f7d52;
+  --color-success-100: color-mix(in srgb, var(--color-success) 14%, var(--color-bg));
+  --color-success-800: color-mix(in srgb, var(--color-success) 70%, black);
+  /* Czerwień błędu jest niezależna od akcentu: akcent to brąz marki, a stan
+     błędu musi zostać czerwony, bo to jedyny kolor, który ludzie czytają jako
+     ostrzeżenie. Kontrast na kremie: 6,00:1 (tekst) i 7,96:1 na tle tinta. */
+  --color-error: #b3261e;
+  --color-error-100: #fdecea;
+  --color-error-800: #8f1810;
+  --color-warning: #b9863a;
+  --color-warning-100: color-mix(in srgb, var(--color-warning) 14%, var(--color-bg));
+  --color-warning-800: color-mix(in srgb, var(--color-warning) 70%, black);
+  --color-gold: #f59e0b;
+
+  /* The reference build's own button/hover curve — a fast, slightly
+     overshooting ease-out, tuned for this pill/hard-shadow language. */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-heading: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-heading-weight: 700;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --space-1: 3.4px;
+  --space-2: 6.8px;
+  --space-3: 10.2px;
+  --space-4: 13.6px;
+  --space-6: 20.4px;
+  --space-8: 27.2px;
+
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+  --radius-pill: 9999px;
+
+  /* Elevation — soft ink-tinted shadows for lift, plus a hard offset-shadow
+     scale (flat color, no blur) for the stickered, hand-placed feel on cards,
+     buttons and badges that want to look physically set down on the page. */
+  --shadow-sm: 0 2px 8px rgba(18, 18, 18, 0.05);
+  --shadow-md: 0 10px 30px rgba(18, 18, 18, 0.08);
+  --shadow-lg: 0 20px 50px rgba(18, 18, 18, 0.12);
+  --shadow-hard-sm: 2px 2px 0 var(--color-text);
+  --shadow-hard: 4px 4px 0 var(--color-text);
+  --shadow-hard-lg: 6px 6px 0 var(--color-text);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); }
+
+/* — panel — a plain bordered surface for anything that needs a frame but is not
+   a content card (course player shell, admin tables, checkout summary). The old
+   `.blueprint`/`.corner`/`.duotone` utilities from the retired Industry system
+   are gone; nothing references them any more. */
+.panel {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-md);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Components — built with the tokens above. Plain CSS
+   on plain HTML: no JavaScript, no build step. Each class is documented in
+   readme.md and demonstrated in foundations/ and components/.
+   ══════════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-size: 16px; line-height: 1.65; font-weight: 400; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading); font-weight: 800;
+  line-height: 1.15; margin: 0 0 var(--space-2);
+}
+h1 { font-size: 42px; text-transform: uppercase; letter-spacing: -0.03em; }
+h2 { font-size: 32px; text-transform: uppercase; letter-spacing: -0.025em; }
+h3 { font-size: 25px; letter-spacing: -0.02em; }
+h4 { font-size: 20px; letter-spacing: -0.015em; }
+h5 { font-size: 16px; letter-spacing: -0.005em; }
+h6 { font-size: 13px; }
+h6 { font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+p { margin: 0 0 var(--space-3); }
+/* Base accent (#8c6249) measures 4.87:1 on the cream ground — it clears AA,
+   but the ramp's doctrine still holds: accent-700 (#5f3d28, 8.83:1) for text
+   at reading size, and the base step for icons, large text, chrome and button
+   fills carrying white text (5.31:1 against #fff). */
+a { color: var(--color-accent-700); text-underline-offset: 3px; transition: color 0.2s ease; }
+img { display: block; max-width: 100%; }
+figure { margin: 0; }
+figcaption {
+  font-size: 11px; margin-top: var(--space-1);
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+.text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-accent-700); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--color-accent) 25%, transparent); }
+
+/* — rules — */
+.hr {
+  height: 1px; border: 0; margin: var(--space-4) 0;
+  background: var(--color-divider);
+}
+
+/* — buttons — */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  cursor: pointer; text-decoration: none;
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 14px; line-height: 1.2; letter-spacing: 0.02em; text-transform: uppercase;
+  color: var(--color-text);
+  background: transparent; border: none;
+  padding: var(--space-2) calc(var(--space-3) * 1.6);
+  border-radius: var(--radius-pill);
+  transition: background 140ms ease-out, transform 180ms var(--ease-spring), box-shadow 180ms var(--ease-spring);
+}
+.btn svg { display: block; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+/* Respond on press, not on release — the fill change above already reacts
+   on :active (mousedown/touchstart), this adds the same instant feedback
+   as a lift so a press *feels* pressed before the click even completes. */
+.btn:active { transform: scale(0.97); }
+.btn:disabled:active { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: background 140ms ease-out; }
+  .btn:active { transform: none; }
+}
+.btn-primary { background: var(--color-accent); color: #fff; box-shadow: 0 8px 20px rgba(140, 98, 73, 0.32); }
+.btn-primary:hover { background: var(--color-accent-600); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(140, 98, 73, 0.42); }
+.btn-primary:active { background: var(--color-accent-700); transform: scale(0.97) translateY(0); }
+.btn-secondary { background: var(--color-surface); color: var(--color-text); border: 2px solid var(--color-text); box-shadow: var(--shadow-hard-sm); }
+.btn-secondary:hover { background: var(--color-bg-dark); color: #fff; transform: translateY(-2px); box-shadow: var(--shadow-hard); }
+.btn-secondary:active { transform: scale(0.97) translateY(0); box-shadow: var(--shadow-hard-sm); }
+.btn-ghost { color: var(--color-accent-700); padding-inline: var(--space-2); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+.btn-ghost:active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); }
+.btn-icon { width: 36px; height: 36px; padding: 0; border-radius: 50%; }
+.btn-block { width: 100%; margin-top: var(--space-2); }
+
+/* — forms — */
+.field > label {
+  display: block; font-size: 12px; margin-bottom: 5px;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+.input {
+  width: 100%; min-height: 40px; padding: 8px 14px; font: inherit;
+  font-size: 14px; color: var(--color-text); caret-color: var(--color-accent);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-divider); border-radius: var(--radius-sm);
+}
+.input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
+.input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
+textarea.input { min-height: 90px; resize: vertical; }
+.radio { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; }
+.radio input, .seg-opt input {
+  position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none;
+}
+.radio .dot {
+  width: 16px; height: 16px; flex: none; border-radius: 50%;
+  border: 1.5px solid var(--color-divider);
+}
+.radio:hover .dot { border-color: var(--color-accent); }
+.radio input:checked + .dot {
+  border-color: var(--color-accent); background: var(--color-accent);
+  box-shadow: inset 0 0 0 4px var(--color-bg);
+}
+.radio input:focus-visible + .dot { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.seg {
+  display: inline-flex; overflow: hidden;
+  border: 1.5px solid var(--color-divider); border-radius: var(--radius-sm);
+}
+.seg-opt {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 12px; font-size: 13px; cursor: pointer;
+}
+.seg-opt + .seg-opt { border-left: 1.5px solid var(--color-divider); }
+.seg-opt:has(input:checked) { background: var(--color-accent); color: #fff; }
+.seg-opt:not(:has(input:checked)):hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.seg-opt:has(input:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+
+/* — cards — */
+.card {
+  display: flex; flex-direction: column; gap: var(--space-2);
+  padding: var(--space-6); border-radius: var(--radius-md);
+  background: var(--color-surface); border: 1px solid var(--color-divider);
+  box-shadow: var(--shadow-sm);
+  transition: transform 250ms var(--ease-spring), box-shadow 250ms var(--ease-spring), border-color 250ms var(--ease-spring);
+}
+.card-kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent-700); }
+.card-title {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: 20px; line-height: 1.25;
+}
+.card-body { margin: 0; font-size: 14px; opacity: 0.82; flex: 1; }
+.card-meta {
+  display: flex; align-items: center; gap: 6px; font-size: 11px;
+  color: color-mix(in srgb, var(--color-text) 50%, transparent);
+}
+.elev-sm { box-shadow: var(--shadow-sm); }
+.elev-md { box-shadow: var(--shadow-md); }
+.elev-lg { box-shadow: var(--shadow-lg); }
+
+/* — tags — */
+.tag {
+  display: inline-flex; align-items: center; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.04em; text-transform: uppercase; padding: 5px 12px;
+  border-radius: var(--radius-pill);
+}
+.tag-accent { background: var(--color-bg-dark); color: #fff; }
+.tag-accent-2 { background: var(--color-accent-100); color: var(--color-accent-800); }
+.tag-neutral { background: var(--color-neutral-200); color: var(--color-neutral-800); }
+.tag-outline { border: 1.5px solid var(--color-text); color: var(--color-text); background: transparent; }
+.tag-success { background: var(--color-success-100); color: var(--color-success-800); }
+.tag-error { background: var(--color-error-100); color: var(--color-error-800); }
+.tag-warning { background: var(--color-warning-100); color: var(--color-warning-800); }
+
+/* — navigation — */
+.nav {
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: none;
+}
+.nav-brand {
+  font-family: var(--font-heading); font-weight: 800; text-transform: uppercase;
+  font-size: 20px; margin-right: auto;
+}
+.nav a { color: inherit; text-decoration: none; font-size: 14px; font-weight: 600; }
+.nav a:hover, .nav a[aria-current='page'] { color: var(--color-accent); }
+.nav .btn-primary { color: #fff; }
+/* Nav links have no built-in collapse (no hamburger); on narrow viewports a
+   full link set (brand + 5-7 links + CTA) doesn't fit on one row. Since pages
+   in this system commonly set `body { overflow-x: hidden }`, an unwrapped nav
+   doesn't just cause a scrollbar — the tail end (often the primary CTA
+   button) gets silently clipped and unreachable. Wrap instead of overflowing. */
+@media (max-width: 720px) {
+  .nav { flex-wrap: wrap; row-gap: var(--space-2); }
+}
+/* — sticky nav material — a translucent floating layer, content scrolls
+   underneath it; the boundary is a soft cast shadow, not a hard 1px line.
+   Wrap `.nav` in `.nav-bar` to use it. */
+.nav-bar {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-divider);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .nav-bar { background: var(--color-bg); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+@media (prefers-contrast: more) {
+  .nav-bar {
+    background: var(--color-bg); backdrop-filter: none; -webkit-backdrop-filter: none;
+    border-bottom: 1.5px solid var(--color-text);
+  }
+}
+
+/* — tables — */
+.table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.table th {
+  text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  padding: var(--space-2); border-bottom: 1px solid var(--color-divider);
+}
+.table td {
+  padding: var(--space-2);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+.table tbody tr:hover { background: color-mix(in srgb, var(--color-text) 4%, transparent); }
+
+/* — dialog — */
+.dialog-backdrop {
+  position: fixed; inset: 0; display: grid; place-items: center;
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-neutral-900) 55%, transparent);
+}
+.dialog {
+  width: min(440px, 100%); display: flex; flex-direction: column; gap: var(--space-3);
+  padding: var(--space-6); border-radius: var(--radius-lg);
+  background: var(--color-surface); box-shadow: var(--shadow-lg);
+}
+.dialog-title {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: 22px;
+}
+.dialog-body { font-size: 14px; opacity: 0.85; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-2); }
+
+/* — marketing-page composition classes — extracted from public_html/index.html so
+   the repeated section chrome, lesson rows, module outcomes and review cards are
+   one definition each (see readme.md "Components"). */
+.section-kicker { display: block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); margin: 0 0 12px; }
+.section-rule { height: 1px; border: 0; margin: 0 0 32px; background: var(--color-divider); transform-origin: 0 50%; animation: ruleGrow .9s ease both; animation-timeline: view(); animation-range: entry 0% cover 22%; }
+.lesson { display: flex; gap: 12px; }
+.lesson-num { font-family: var(--font-heading); font-weight: 700; color: var(--color-accent-700); font-size: 13px; min-width: 26px; }
+.lesson-title { font-size: 15px; }
+.module-outcome { margin: 16px 24px 20px; padding: 16px 18px; background: var(--color-accent-100); border-radius: var(--radius-sm); font-size: 14px; line-height: 1.55; }
+.module-outcome strong { color: var(--color-accent-800); }
+.pain-title { display: block; font-family: var(--font-heading); font-weight: 700; font-size: 15px; text-transform: uppercase; margin-bottom: 4px; }
+/* Rząd modułu w akordeonie programu: tytuł bierze wolną przestrzeń, a zakres
+   lekcji stoi we własnej, stałej kolumnie tuż przed chevronem — inaczej przy
+   `justify-content: space-between` jego pozycja zależy od długości tytułu
+   i zakresy nie trzymają jednej linii. */
+.module-name { flex: 1; min-width: 0; }
+/* — stopka landingu — trzy poziomy zamiast czterech kolumn w space-between.
+   Cztery kolumny o różnych szerokościach zawijały się w krzywe 2×2 z dziurami;
+   każdy poziom ma tu najwyżej dwa elementy, więc nie ma się jak rozjechać. */
+.footer-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: clamp(40px, 5vw, 56px) clamp(20px, 5vw, 72px) 32px;
+  display: flex; flex-direction: column; gap: 28px;
+}
+.footer-top {
+  display: flex; flex-wrap: wrap; justify-content: space-between;
+  align-items: flex-start; gap: 24px;
+}
+.footer-contact {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 14px;
+}
+.footer-sep { color: color-mix(in srgb, var(--color-text) 35%, transparent); }
+.footer-legal {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  padding-top: 22px; border-top: 1px solid var(--color-divider);
+  font-size: 13px; color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+.footer-legal a { color: inherit; }
+
+.module-range {
+  flex: none; min-width: 5.75rem; text-align: right; white-space: nowrap;
+  font-size: 13px; font-weight: 400; text-transform: none;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+.review-stars { color: var(--color-gold); font-size: 14px; letter-spacing: 0.05em; }
+.review-text { margin: 0; font-size: 14px; line-height: 1.6; flex: 1; }
+.review-author { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.review-avatar { border-radius: 50%; flex: none; }
+.review-name { font-family: var(--font-heading); font-weight: 700; font-size: 13px; }
+.review-context { font-size: 11px; color: color-mix(in srgb, var(--color-text) 60%, transparent); }
+/* — kotwica ceny — badge / cena + cena przekreślona / oszczędność, każdy
+   element w swoim rzędzie. Wcześniej wszystkie cztery leżały w jednym
+   flex-wrapie i układały się inaczej przy każdej szerokości ekranu. */
+/* — reduced motion —
+   Strona buduje wjazdy sekcji i parallax na ~100 animacjach zapisanych INLINE
+   w HTML. Reguła z arkusza przegrywa ze stylem inline, więc bez !important to
+   ustawienie systemowe nie miałoby tu żadnego skutku. Wszystkie klatki kluczowe
+   kończą się na stanie naturalnym elementu, więc wyłączenie animacji zostawia
+   treść widoczną — nie ukrytą. */
+@media (prefers-reduced-motion: reduce) {
+  *:not(.motion-keep):not(.motion-keep *) { animation: none !important; }
+  html { scroll-behavior: auto; }
+
+  /* Dwa wyjątki, których nie wolno po prostu wyłączyć.
+     1. Sticky CTA ma stan bazowy opacity:0 i pokazuje go animacja scrollowa —
+        samo wyłączenie ukryłoby na telefonie jedyny stale dostępny przycisk. */
+  .sticky-mobile-cta { opacity: 1 !important; transform: none !important; }
+  /* 2. Pasek postępu (.motion-keep) jest sprzężony ze scrollem tak samo jak
+        pasek przewijania: rusza się wyłącznie wtedy, gdy rusza się użytkownik,
+        więc nie wywołuje reakcji przedsionkowej, a niesie informację o pozycji.
+        Zostaje włączony — wyłączony rozciągnąłby się na pełną szerokość. */
+}
+
+/* — cele dotykowe —
+   Pomiar na 375px wykazał 10 odnośników niższych niż 44px, w tym jedyne CTA
+   w pasku ogłoszeniowym (21px) i komplet linków w stopce (16–23px). Reguła
+   działa wyłącznie na urządzeniach dotykowych, więc rytm na desktopie zostaje
+   nietknięty. Checkbox zgody jest opakowany w <label>, więc klikalny jest cały
+   tekst — nie wymaga poprawki. Linki wplecione w zdanie (np. „polityka
+   prywatności" w zgodzie) świadomie pomijamy: powiększony obszar dotyku
+   zachodziłby na sąsiednie wiersze i kradł im kliknięcia. */
+@media (pointer: coarse) {
+  .announce a,
+  .footer-contact a,
+  .footer-legal a {
+    display: inline-flex; align-items: center; min-height: 44px;
+  }
+}
+
+/* — spin badge: pierścień obracającego się tekstu wokół tarczy z rabatem —
+   Odpowiednik efektu z pinowanej referencji, zbudowany natywnie: tam były dwa
+   obrazki (webp + obracany SVG) sterowane skryptem, tu jeden <textPath> i jedna
+   klatka kluczowa. Skaluje się bez utraty ostrości i bierze kolory z tokenów.
+   Cały układ jest dekoracyjny — rabat stoi obok słowami w .price-anchor —
+   więc znacznik nosi aria-hidden i nic nie ginie dla czytnika ekranu. */
+.spin-badge {
+  position: relative; flex: none;
+  width: clamp(104px, 24vw, 132px); aspect-ratio: 1;
+  display: grid; place-items: center;
+}
+.spin-badge-ring {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  fill: var(--color-accent-700);
+  animation: spinBadge 26s linear infinite;
+}
+.spin-badge-ring text {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 11px; letter-spacing: 0.04em;
+}
+.spin-badge-disc {
+  width: 66%; aspect-ratio: 1; border-radius: 50%;
+  background: var(--color-accent); color: #fff;
+  display: grid; place-items: center; text-align: center;
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: clamp(17px, 4.4vw, 21px); line-height: 1; letter-spacing: -0.02em;
+}
+@keyframes spinBadge { to { transform: rotate(360deg); } }
+/* Ruch po okręgu bez końca jest jednym z bardziej uciążliwych wzorców dla osób
+   wrażliwych na animację — przy tym ustawieniu pierścień po prostu stoi. */
+@media (prefers-reduced-motion: reduce) { .spin-badge-ring { animation: none; } }
+
+/* Karta ceny to siatka dwukolumnowa: po lewej etykieta przedsprzedaży, kwota
+   i oszczędność, po prawej tarcza z rabatem wyśrodkowana względem obu wierszy
+   z ceną. Wszystko wewnątrz paddingu — tarcza nie zachodzi już na ramkę.
+   max-width:100% pilnuje, żeby przy 375px karta nie wyszła poza margines. */
+.price-anchor {
+  display: inline-grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: 10px 18px; max-width: 100%;
+  padding: 18px 22px; background: var(--color-surface);
+  border: 2px solid var(--color-text); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-hard);
+}
+.price-anchor > .tag { grid-column: 1 / -1; justify-self: start; }
+.price-anchor-row, .price-anchor-save { grid-column: 1; }
+.price-anchor-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.price-anchor-now {
+  font-family: var(--font-heading); font-weight: 800; line-height: 1;
+  font-size: clamp(28px, 4vw, 36px); letter-spacing: -0.02em;
+}
+/* Tarcza zajmuje własną kolumnę i obejmuje oba wiersze z ceną, więc jest
+   optycznie wyśrodkowana względem kwoty, a nie doklejona do rogu. */
+.price-anchor .spin-badge {
+  grid-column: 2; grid-row: 2 / span 2; align-self: center;
+  width: clamp(74px, 18vw, 96px);
+}
+
+.price-anchor-was {
+  font-size: 16px; text-decoration: line-through;
+  color: color-mix(in srgb, var(--color-text) 45%, transparent);
+}
+.price-anchor-save { font-size: 13px; font-weight: 700; color: var(--color-accent-700); }

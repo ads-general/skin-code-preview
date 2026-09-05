@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="Polityka prywatności serwisu My True Cosmetology i kursu Skin Code Olgi Pavlenko.">
+<link rel="canonical" href="https://www.mytruecosmetology.com/polityka-prywatnosci">
+<link rel="stylesheet" href="design-system/styles.css">
+<script src="design-system/_ds_bundle.js"></script>
+<style>body { margin: 0; }</style>
+</helmet>
+<nav class="nav" style="max-width:900px;margin:0 auto;padding:20px clamp(20px,5vw,72px)">
+  <a class="nav-brand" href="index.html" style="text-decoration:none;color:inherit">Skin Code</a>
+  <a href="index.html">Strona główna</a>
+</nav>
+<main style="max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,72px) 96px">
+  <h1 style="font-family:var(--font-heading);font-weight:700;text-transform:uppercase;font-size:clamp(30px,4vw,44px);margin:0 0 8px">Polityka prywatności</h1>
+  <p style="font-size:14px;color:color-mix(in srgb, var(--color-text) 65%, transparent);margin:0 0 40px">Ostatnia aktualizacja: [DATA]</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">1. Administrator danych</h2>
+  <p style="font-size:15px;line-height:1.65">Administratorem danych osobowych zbieranych w serwisie mytruecosmetology.com jest <strong>DBMP</strong> [pełne dane rejestrowe w wersji produkcyjnej], kontakt: <span class="email-protect" data-u="olga" data-d="pawlenko.com">olga [at] pawlenko.com</span>.</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">2. Jakie dane zbieramy</h2>
+  <p style="font-size:15px;line-height:1.65">W procesie zapisu na kurs Skin Code zbieramy: imię i nazwisko, adres e-mail oraz dane niezbędne do realizacji płatności przez zewnętrzną platformę płatniczą [PLACEHOLDER — nazwa operatora płatności].</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">3. Cel przetwarzania danych</h2>
+  <p style="font-size:15px;line-height:1.65">Dane przetwarzane są w celu: realizacji zakupu i dostępu do kursu, kontaktu w ramach pakietu Mentoring, obsługi zgłoszeń oraz — po wyrażeniu zgody — wysyłki informacji marketingowych.</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">4. Podstawa prawna</h2>
+  <p style="font-size:15px;line-height:1.65">Podstawą przetwarzania jest art. 6 ust. 1 lit. b) i f) RODO — wykonanie umowy oraz prawnie uzasadniony interes administratora, a w przypadku zgody marketingowej — art. 6 ust. 1 lit. a) RODO.</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">5. Okres przechowywania danych</h2>
+  <p style="font-size:15px;line-height:1.65">Dane przechowywane są przez czas trwania dostępu do kursu oraz okres wymagany przepisami podatkowymi i księgowymi.</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">6. Prawa osoby, której dane dotyczą</h2>
+  <p style="font-size:15px;line-height:1.65">Masz prawo dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia danych oraz wniesienia sprzeciwu, a także skargi do Prezesa UODO.</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">7. Pliki cookies</h2>
+  <p style="font-size:15px;line-height:1.65">Serwis może wykorzystywać pliki cookies do celów statystycznych (np. Google Analytics) — [PLACEHOLDER: opisać dokładnie użyte narzędzia analityczne po ich wdrożeniu].</p>
+
+  <h2 style="font-size:22px;margin:32px 0 12px">8. Kontakt</h2>
+  <p style="font-size:15px;line-height:1.65">W sprawach dotyczących ochrony danych osobowych skontaktuj się: <span class="email-protect" data-u="olga" data-d="pawlenko.com">olga [at] pawlenko.com</span>.</p>
+</main>
+<footer style="border-top:1px solid var(--color-divider)">
+  <div style="max-width:900px;margin:0 auto;padding:24px clamp(20px,5vw,72px);font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent)">© 2026 My True Cosmetology · DBMP</div>
+</footer>
+
+</x-dc>
+<script>
+// Adresu nie ma w źródle strony — składamy go dopiero w przeglądarce, żeby nie
+// zbierały go scrapery czytające HTML regexem. Bez JS zostaje czytelny zapis
+// „olga [at] pawlenko.com", więc kontakt jest podany także wtedy (wymóg art. 5
+// ustawy o świadczeniu usług drogą elektroniczną).
+//
+// Obserwator, nie jednorazowy przebieg: runtime DC renderuje treść <x-dc>
+// asynchronicznie, więc pojedyncze wywołanie trafiłoby w pustą stronę,
+// a wstawione linki i tak zostałyby nadpisane przy renderze.
+(function () {
+  function rozwin(root) {
+    (root.querySelectorAll ? root.querySelectorAll('.email-protect') : []).forEach(function (el) {
+      var addr = el.dataset.u + '@' + el.dataset.d;
+      var a = document.createElement('a');
+      a.href = 'mailto:' + addr;
+      a.textContent = addr;
+      el.replaceWith(a);
+    });
+  }
+  rozwin(document);
+  new MutationObserver(function (muts) {
+    muts.forEach(function (m) {
+      m.addedNodes.forEach(function (n) { if (n.nodeType === 1) rozwin(n); });
+    });
+  }).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+
+</body>
+</html>

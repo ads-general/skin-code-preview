@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" role="img" aria-label="Monogram ML">
+  <circle cx="40" cy="40" r="39" fill="#edd9d1"/>
+  <circle cx="40" cy="40" r="38.25" fill="none" stroke="#d2928a" stroke-width="1.5"/>
+  <text x="40" y="40" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="27" font-weight="700" letter-spacing="0.5" fill="#75130c" text-anchor="middle" dominant-baseline="central">ML</text>
+</svg>
